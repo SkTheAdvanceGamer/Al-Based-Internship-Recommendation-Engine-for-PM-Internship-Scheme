@@ -262,7 +262,7 @@ function App() {
               <AnimatePresence>{jobTips[job.id] && (<motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} className="mt-6 bg-neon/10 border border-neon/30 p-4"><h4 className="font-pixel text-[8px] text-neon uppercase mb-3 tracking-widest"><Lightbulb size={12} className="inline"/> SYSTEM ADVICE</h4><ul className="list-disc pl-4 space-y-2 text-white/80 text-[10px] sm:text-xs">{jobTips[job.id].map((tip, i) => <li key={i}>{tip}</li>)}</ul></motion.div>)}</AnimatePresence>
               
               <div className="mt-6 flex flex-col gap-3">
-                <a href={job.apply_url || "#"} target="_blank" className="text-center bg-neon text-black tracking-[0.2em] font-black uppercase py-4 border border-neon btn-glow text-xs">{ui.applyNow}</a>
+                <a href={job.apply_url || "https://pminternship.mca.gov.in/"} target="_blank" rel="noopener noreferrer" className="text-center bg-neon text-black tracking-[0.15em] font-black uppercase py-4 border border-neon btn-glow text-xs flex items-center justify-center gap-2">🌐 APPLY ON PM INTERNSHIP PORTAL →</a>
                 <div className="grid grid-cols-2 gap-3">
                     <button onClick={() => fetchJobTips(job)} disabled={tipsLoading === job.id} className="bg-transparent text-white font-bold tracking-[0.2em] uppercase py-3 border border-white/30 flex items-center justify-center gap-2 text-[10px]">{tipsLoading === job.id ? <Loader2 className="animate-spin" size={14}/> : <><Lightbulb size={14}/> TIPS</>}</button>
                     <button onClick={() => startInterview(job)} disabled={interviewLoading} className="bg-transparent text-white font-bold tracking-[0.2em] uppercase py-3 border border-white/30 flex items-center justify-center gap-2 text-[10px]">{interviewLoading ? <Loader2 className="animate-spin" size={14}/> : <><Target size={14}/> INTERVIEW</>}</button>
@@ -287,8 +287,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black w-full font-sans text-white flex flex-col items-center selection:bg-neon selection:text-black">
-      <video autoPlay loop muted playsInline className="fixed top-0 left-0 w-full h-full object-cover z-0 opacity-40 mix-blend-screen pointer-events-none text-black"><source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-background-3094-large.mp4" type="video/mp4"/></video>
-      <div className="fixed top-0 left-0 w-full h-full bg-black/70 z-0 pointer-events-none"></div>
+      <video autoPlay loop muted playsInline className="fixed top-0 left-0 w-full h-full object-cover z-0 opacity-60 pointer-events-none"><source src="https://raw.githubusercontent.com/SkTheAdvanceGamer/Video/main/Futuristic_Data_Node_Animation.mp4" type="video/mp4"/></video>
+      <div className="fixed top-0 left-0 w-full h-full bg-black/30 z-0 pointer-events-none"></div>
 
       <div className="w-full max-w-md bg-transparent min-h-screen flex flex-col relative shadow-2xl z-10">
           <Header language={language} selectLanguage={selectLanguage} user={user} onLogout={handleLogout} />

@@ -19,10 +19,10 @@ export const LoginScreen = () => {
   return (
     <div className="bg-black flex items-center justify-center min-h-screen w-full max-w-md mx-auto relative z-50 overflow-hidden font-sans">
         
-        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-40 mix-blend-screen">
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-background-3094-large.mp4" type="video/mp4"/>
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-60">
+          <source src="https://raw.githubusercontent.com/SkTheAdvanceGamer/Video/main/Futuristic_Data_Node_Animation.mp4" type="video/mp4"/>
         </video>
-        <div className="absolute inset-0 bg-black/80 z-10 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-black/30 z-10 pointer-events-none"></div>
 
         <motion.div 
             initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}

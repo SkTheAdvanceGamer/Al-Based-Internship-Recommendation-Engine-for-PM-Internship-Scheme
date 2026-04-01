@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 import pdfplumber
 import re
 import json
@@ -13,6 +13,11 @@ from dotenv import load_dotenv
 from google import genai
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
+
+PM_PORTAL_URL = "https://pminternship.mca.gov.in/"
+
+LANG_MAP = {"hi": "Hindi", "te": "Telugu", "en": "English"}
 
 # ==========================================
 # 🔐 SECURITY UPDATE: Load API key from .env
@@ -66,6 +71,7 @@ class DynamicJobsRequest(BaseModel):
     education: str
     preferred_sector: str
     target_language: str
+    lang: Optional[str] = "en"  # "en", "hi" (Hindi), "te" (Telugu)
 
 # --- REFINED TARGET SKILLS ---
 TARGET_SKILLS = {
@@ -122,14 +128,21 @@ def generate_dynamic_questions(skills: List[str], api_key: str, num_questions=3)
         return []
 
 def rag_semantic_search(user_profile: dict, user_skills: List[str], top_n=5):
+    """TF-IDF based semantic search. Strictly returns top 3-5 results."""
+    # Enforce strict limits per hackathon requirement
+    top_n = max(3, min(top_n, 5))
+    
     try:
-        with open("jobs.json", "r") as f:
+        with open("jobs.json", "r", encoding="utf-8") as f:
             db_jobs = json.load(f)
     except Exception as e:
         print(f"Error loading jobs.json: {e}")
         return []
 
-    corpus = [f"{j['sector']} {j['location']} {j['title']} {' '.join(j['skills'])} {j['description']}" for j in db_jobs]
+    if not db_jobs:
+        return []
+
+    corpus = [f"{j.get('sector','')} {j.get('location','')} {j.get('title','')} {' '.join(j.get('skills',[]))} {j.get('description','')}" for j in db_jobs]
     query = f"{user_profile.get('preferred_sector', '')} {user_profile.get('location', '')} {user_profile.get('education', '')} {' '.join(user_skills)}"
     
     vectorizer = TfidfVectorizer()
@@ -139,11 +152,30 @@ def rag_semantic_search(user_profile: dict, user_skills: List[str], top_n=5):
     ranked = []
     for idx, score in enumerate(cosine_similarities):
         intern_data = db_jobs[idx].copy()
-        intern_data['match_score'] = min(int(score * 100) + 15, 99) 
+        intern_data['match_score'] = min(int(score * 100) + 15, 99)
         ranked.append(intern_data)
         
     ranked.sort(key=lambda x: x['match_score'], reverse=True)
     return ranked[:top_n]
+
+def translate_text_lightweight(text: str, dest_lang: str) -> str:
+    """Translate text using Gemini. Falls back to original on error."""
+    if not text or dest_lang == "en":
+        return text
+    if not GEMINI_API_KEY:
+        return text
+    try:
+        client = genai.Client(api_key=GEMINI_API_KEY)
+        lang_name = LANG_MAP.get(dest_lang, dest_lang)
+        prompt = f"Translate the following text to {lang_name}. Return ONLY the translated text, nothing else.\n\nText: {text}"
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=prompt,
+        )
+        return response.text.strip()
+    except Exception as e:
+        print(f"Translation error: {e}")
+    return text
 
 def generate_interview_prep(job_title: str, company: str, skills: List[str], api_key: str):
     if not api_key:
@@ -246,7 +278,16 @@ def get_recommended_jobs(request: DynamicJobsRequest):
         "education": request.education,
         "preferred_sector": request.preferred_sector
     }
+    # Strictly return top 3-5 matches
     jobs = rag_semantic_search(profile_dict, request.skills, top_n=5)
+    
+    # Translate title and sector if lang is Hindi or Telugu
+    lang = getattr(request, 'lang', 'en') or 'en'
+    if lang in ('hi', 'te'):
+        for job in jobs:
+            job['title'] = translate_text_lightweight(job.get('title', ''), lang)
+            job['sector'] = translate_text_lightweight(job.get('sector', ''), lang)
+    
     return {"top_matches": jobs}
 
 class JobTipRequest(BaseModel):

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
-import { Sparkles, FileText, Target, CheckCircle, ChevronRight, Briefcase, ChevronLeft, Loader2, Star, ShieldCheck, BrainCircuit, XCircle, Award, Lightbulb, MapPin, BookOpen, Layers } from 'lucide-react';
+import { Sparkles, FileText, Target, CheckCircle, ChevronRight, Briefcase, ChevronLeft, Loader2, Star, ShieldCheck, BrainCircuit, XCircle, Award, Lightbulb, MapPin, BookOpen, Layers, Tractor, Monitor, Truck, ShoppingBag, Landmark, Heart, Factory, Wrench, Zap, Hammer, Globe, Cpu, Keyboard, Package, HeadsetIcon as Headphones, Code, PenTool, Users, Phone, Languages } from 'lucide-react';
 import { Header } from './components/Header';
 import { AIChatMentor } from './components/AIChatMentor';
 import { InterviewSimulator } from './components/InterviewSimulator';
@@ -13,17 +13,43 @@ const API_BASE = "http://localhost:8000";
 
 // Core static dictionary for english fallbacks
 const defaultUIStrings = {
-  onboardingTitle: "EMPOWERING YOUTH CAREERS",
-  onboardingSub: "The PM Internship Scheme connects ambitious youth from across the nation with top 500 CSR companies.",
-  locationLabel: "Coordinates", educationLabel: "Clearance Level", sectorLabel: "Sector Directive",
-  noResume: "VISUAL SKILLS", noResumeSub: "Initialize Manual Grid",
-  haveResume: "UPLOAD RESUME", haveResumeSub: "Launch Auto Scan", or: "OR",
-  manualTitle: "COMPETENCY MATRIX", manualSub: "Select visual icons matching your operational skills.", findOpportunities: "FIND INTERNSHIPS",
-  uploadTitle: "DOCUMENT UPLOAD", tapToBrowse: "TAP TO BROWSE", pdfOnly: "PDF PROTOCOL ONLY",
-  goBack: "RETURN", analyzing: "SCANNING...", extracting: "AI EXTRACTING...",
-  startOver: "SYSTEM REBOOT", skillsVerified: "PROFILE VERIFIED", topJobMatches: "TOP DIRECTIVES", applyNow: "EXECUTE APPLICATION", aiInterview: "SIMULATE AI INTERVIEW", getTips: "REQUEST TACTICS",
-  quizTitle: "SKILL VERIFICATION", quizSub: "Answer 5 technical questions to unlock secure matching protocols.", generatingJobs: "CALCULATING VECTORS...", finishQuizMsg: "VERIFICATION COMPLETE!", nextQuestion: "PROCEED", finishQuiz: "REVEAL DIRECTIVES", noMatch: "NO EXACT MATCHES IN DATABASE."
+  onboardingTitle: "YOUR CAREER STARTS HERE",
+  onboardingSub: "The PM Internship Scheme connects youth with India's top 500 companies. Choose your path below.",
+  locationLabel: "Your City", educationLabel: "Education", sectorLabel: "Choose Sector",
+  noResume: "SELECT SKILLS", noResumeSub: "Pick from icons below",
+  haveResume: "UPLOAD RESUME", haveResumeSub: "We'll scan it for you", or: "OR",
+  manualTitle: "SELECT YOUR SKILLS", manualSub: "Tap icons that match what you can do.", findOpportunities: "FIND MY INTERNSHIPS",
+  uploadTitle: "UPLOAD RESUME", tapToBrowse: "TAP TO BROWSE", pdfOnly: "PDF ONLY",
+  goBack: "BACK", analyzing: "SCANNING...", extracting: "AI EXTRACTING...",
+  startOver: "START OVER", skillsVerified: "VERIFIED", topJobMatches: "YOUR TOP MATCHES", applyNow: "APPLY NOW", aiInterview: "PRACTICE INTERVIEW", getTips: "GET TIPS",
+  quizTitle: "QUICK QUIZ", quizSub: "Answer 5 questions to verify your skills.", generatingJobs: "FINDING JOBS...", finishQuizMsg: "QUIZ COMPLETE!", nextQuestion: "NEXT", finishQuiz: "SEE MY INTERNSHIPS", noMatch: "No matches found. Try different skills."
 };
+
+const SECTOR_OPTIONS = [
+  { id: "Any", label: "All Sectors", icon: Globe },
+  { id: "IT & Technology", label: "IT & Tech", icon: Monitor },
+  { id: "Agriculture & Fertilizers", label: "Agriculture", icon: Tractor },
+  { id: "Banking & Finance", label: "Banking", icon: Landmark },
+  { id: "Healthcare", label: "Healthcare", icon: Heart },
+  { id: "Logistics & E-Commerce", label: "Logistics", icon: Truck },
+  { id: "FMCG & Retail", label: "Retail", icon: ShoppingBag },
+  { id: "Automotive", label: "Automotive", icon: Wrench },
+  { id: "Power & Energy", label: "Energy", icon: Zap },
+  { id: "Steel & Manufacturing", label: "Manufacturing", icon: Factory },
+  { id: "Construction & Infrastructure", label: "Construction", icon: Hammer },
+  { id: "Telecommunications", label: "Telecom", icon: Phone },
+];
+
+const LOCATION_OPTIONS = [
+  "India (Any)", "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai",
+  "Pune", "Kolkata", "Noida", "Ahmedabad", "Jaipur", "Remote"
+];
+
+const LANG_OPTIONS = [
+  { code: "English", label: "English", lang: "en" },
+  { code: "Hindi", label: "हिंदी", lang: "hi" },
+  { code: "Telugu", label: "తెలుగు", lang: "te" },
+];
 
 function App() {
   const [screen, setScreen] = useState("onboarding");
@@ -49,7 +75,8 @@ function App() {
 
   // User States
   const [skills, setSkills] = useState([]);
-  const [profileDict, setProfileDict] = useState({ location: "Amaravati", education: "10th Pass", preferred_sector: "Any" });
+  const [profileDict, setProfileDict] = useState({ location: "India (Any)", education: "10th Pass", preferred_sector: "Any" });
+  const [activeLang, setActiveLang] = useState("en");
   const [quizData, setQuizData] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -72,9 +99,10 @@ function App() {
   };
 
   // 1. Localization Layer
-  const selectLanguage = async (l) => {
-    setLanguage(l);
-    if (l === "English") {
+  const selectLanguage = async (langObj) => {
+    setLanguage(langObj.code);
+    setActiveLang(langObj.lang);
+    if (langObj.code === "English") {
       setUi(defaultUIStrings);
       return;
     }
@@ -82,12 +110,12 @@ function App() {
     setTranslating(true);
     try {
       const res = await axios.post(`${API_BASE}/translate`, {
-        target_language: l,
+        target_language: langObj.code,
         payload: defaultUIStrings
       });
       setUi(res.data.translated_payload || defaultUIStrings);
     } catch (e) {
-      alert("Translation server offline. Using English.");
+      console.error("Translation failed, using English.");
     }
     setTranslating(false);
   };
@@ -139,7 +167,8 @@ function App() {
         location: profileDict?.location || "India",
         education: profileDict?.education || "10th Pass",
         preferred_sector: profileDict?.preferred_sector || "Any",
-        target_language: language
+        target_language: language,
+        lang: activeLang
       };
       const res = await axios.post(`${API_BASE}/recommended-jobs`, payload);
       setJobs(res.data.top_matches || []);
@@ -193,24 +222,71 @@ function App() {
 
   // --- Screens ---
   const OnboardingScreen = () => {
-    const [loc, setLoc] = useState(profileDict.location); const [edu, setEdu] = useState(profileDict.education); const [sec, setSec] = useState(profileDict.preferred_sector);
+    const [loc, setLoc] = useState(profileDict.location);
+    const [edu, setEdu] = useState(profileDict.education);
+    const [sec, setSec] = useState(profileDict.preferred_sector);
     const handleContinue = (dest) => { setProfileDict({ location: loc, education: edu, preferred_sector: sec }); navTo(dest); };
     return (
-      <motion.div {...pageTransition} className="w-full flex-grow grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mt-12 mb-12 relative pb-20">
-        <div className="hidden lg:block w-full h-full"></div>
-        <div className="flex flex-col gap-6 lg:gap-8 max-w-2xl float-subtle">
-            <p className="text-neon font-bold tracking-[0.3em] text-xs uppercase flex items-center gap-4"><span className="w-12 h-px bg-neon inline-block"></span>GOVERNMENT OF INDIA</p>
-            <h1 className="font-pixel text-4xl lg:text-[42px] leading-[1.4] text-white drop-shadow-2xl uppercase">{ui.onboardingTitle}</h1>
-            <p className="text-white/60 text-lg leading-relaxed font-sans max-w-lg border-l-2 border-white/20 pl-6">{ui.onboardingSub}</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2 font-sans">
-                <div><label className="text-[10px] font-bold text-white/40 uppercase tracking-widest flex items-center gap-2 mb-2"><MapPin size={12}/> {ui.locationLabel}</label><input type="text" value={loc} onChange={(e)=>setLoc(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-none px-4 py-3 text-white focus:border-neon outline-none" /></div>
-                <div><label className="text-[10px] font-bold text-white/40 uppercase tracking-widest flex items-center gap-2 mb-2"><BookOpen size={12}/> {ui.educationLabel}</label><select value={edu} onChange={(e)=>setEdu(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-none px-4 py-3 text-white focus:border-neon outline-none appearance-none"><option className="bg-black">10th Pass</option><option className="bg-black">12th Pass</option><option className="bg-black">Diploma</option><option className="bg-black">Graduate</option></select></div>
-                <div><label className="text-[10px] font-bold text-white/40 uppercase tracking-widest flex items-center gap-2 mb-2"><Layers size={12}/> {ui.sectorLabel}</label><select value={sec} onChange={(e)=>setSec(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-none px-4 py-3 text-white focus:border-neon outline-none appearance-none"><option className="bg-black">Any</option><option className="bg-black">IT Support</option><option className="bg-black">Software Engineering</option><option className="bg-black">Logistics</option><option className="bg-black">Retail</option></select></div>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 mt-6">
-                <button onClick={() => handleContinue("manual")} className="bg-neon text-black border-2 border-neon font-bold font-sans tracking-widest uppercase px-6 py-4 hover:bg-transparent hover:text-neon transition-all btn-glow"><Target size={18} className="inline mr-2 -mt-1"/>{ui.noResume}</button>
-                <button onClick={() => handleContinue("upload")} className="bg-black/50 backdrop-blur-md font-sans text-white border-2 border-white/30 font-bold tracking-widest uppercase px-6 py-4 hover:border-white transition-all"><FileText size={18} className="inline mr-2 -mt-1"/>{ui.haveResume}</button>
-            </div>
+      <motion.div {...pageTransition} className="w-full max-w-4xl mx-auto pt-6 pb-20">
+        {/* Hero */}
+        <div className="text-center mb-10">
+          <p className="text-neon font-bold tracking-[0.3em] text-xs uppercase mb-4 flex items-center justify-center gap-3"><span className="w-8 h-px bg-neon inline-block"></span>PM INTERNSHIP SCHEME<span className="w-8 h-px bg-neon inline-block"></span></p>
+          <h1 className="font-pixel text-2xl md:text-4xl leading-[1.5] text-white uppercase">{ui.onboardingTitle}</h1>
+          <p className="text-white/50 text-sm md:text-base leading-relaxed font-sans max-w-lg mx-auto mt-4">{ui.onboardingSub}</p>
+        </div>
+
+        {/* Sector Grid — Visual Icons */}
+        <div className="mb-10">
+          <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] mb-4 flex items-center gap-2"><Layers size={12}/> {ui.sectorLabel}</h3>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+            {SECTOR_OPTIONS.map(s => {
+              const Icon = s.icon;
+              const active = sec === s.id;
+              return (
+                <motion.button key={s.id} whileTap={{ scale: 0.95 }} onClick={() => setSec(s.id)}
+                  className={`flex flex-col items-center justify-center p-4 md:p-5 border transition-all duration-200 cursor-pointer ${active ? 'border-neon bg-neon/10 shadow-[0_0_12px_rgba(255,85,0,0.3)]' : 'border-white/10 bg-black/40 hover:border-white/30'}`}>
+                  <Icon size={28} className={`mb-2 ${active ? 'text-neon' : 'text-white/40'}`} />
+                  <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-wider ${active ? 'text-neon' : 'text-white/50'}`}>{s.label}</span>
+                </motion.button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Location Grid */}
+        <div className="mb-10">
+          <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] mb-4 flex items-center gap-2"><MapPin size={12}/> {ui.locationLabel}</h3>
+          <div className="flex flex-wrap gap-2">
+            {LOCATION_OPTIONS.map(l => (
+              <motion.button key={l} whileTap={{ scale: 0.95 }} onClick={() => setLoc(l)}
+                className={`px-4 py-3 border text-xs font-bold uppercase tracking-wider transition-all ${loc === l ? 'border-neon bg-neon/10 text-neon shadow-[0_0_10px_rgba(255,85,0,0.2)]' : 'border-white/10 bg-black/40 text-white/50 hover:border-white/30'}`}>
+                {l}
+              </motion.button>
+            ))}
+          </div>
+        </div>
+
+        {/* Education Selector */}
+        <div className="mb-10">
+          <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] mb-4 flex items-center gap-2"><BookOpen size={12}/> {ui.educationLabel}</h3>
+          <div className="flex flex-wrap gap-3">
+            {["10th Pass", "12th Pass", "Diploma", "Graduate"].map(e => (
+              <motion.button key={e} whileTap={{ scale: 0.95 }} onClick={() => setEdu(e)}
+                className={`px-6 py-4 border text-sm font-bold uppercase tracking-wider transition-all ${edu === e ? 'border-neon bg-neon/10 text-neon shadow-[0_0_10px_rgba(255,85,0,0.2)]' : 'border-white/10 bg-black/40 text-white/50 hover:border-white/30'}`}>
+                {e}
+              </motion.button>
+            ))}
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <motion.button whileTap={{ scale: 0.97 }} onClick={() => handleContinue("manual")} className="flex-1 bg-neon text-black font-bold font-sans tracking-widest uppercase px-6 py-5 text-sm border-2 border-neon hover:bg-transparent hover:text-neon transition-all btn-glow flex items-center justify-center gap-3">
+              <Target size={20}/> {ui.noResume}
+            </motion.button>
+            <motion.button whileTap={{ scale: 0.97 }} onClick={() => handleContinue("upload")} className="flex-1 bg-black/50 backdrop-blur-md font-sans text-white border-2 border-white/30 font-bold tracking-widest uppercase px-6 py-5 text-sm hover:border-white transition-all flex items-center justify-center gap-3">
+              <FileText size={20}/> {ui.haveResume}
+            </motion.button>
         </div>
       </motion.div>
     );
@@ -219,25 +295,43 @@ function App() {
   const ManualScreen = () => {
     const [selected, setSelected] = useState([]);
     const toggle = (skill) => selected.includes(skill) ? setSelected(selected.filter(s => s !== skill)) : setSelected([...selected, skill]);
-    const map = [
-      { id: "farming", label: "Farming", icon: "🚜" }, { id: "mechanic", label: "Mechanic", icon: "🔧" },
-      { id: "typing", label: "Data Entry", icon: "⌨️" }, { id: "packaging", label: "Packaging", icon: "📦" },
-      { id: "python", label: "Python", icon: "🐍" }, { id: "customer service", label: "Support", icon: "🎧" }
+    const skillMap = [
+      { id: "farming", label: "Farming", icon: Tractor },
+      { id: "mechanic", label: "Mechanic", icon: Wrench },
+      { id: "data entry", label: "Data Entry", icon: Keyboard },
+      { id: "packaging", label: "Packaging", icon: Package },
+      { id: "python", label: "Python", icon: Code },
+      { id: "customer service", label: "Support", icon: Phone },
+      { id: "networking", label: "Networking", icon: Cpu },
+      { id: "excel", label: "Excel", icon: Monitor },
+      { id: "hardware", label: "Hardware", icon: Hammer },
+      { id: "logistics", label: "Logistics", icon: Truck },
+      { id: "communication", label: "Communication", icon: Users },
+      { id: "design", label: "Design", icon: PenTool },
     ];
     return (
-      <motion.div {...pageTransition} className="max-w-3xl mx-auto w-full pb-20 pt-10 text-white">
-        <button onClick={() => navTo("onboarding")} className="text-neon border border-neon font-bold mb-10 flex items-center gap-2 bg-black/40 px-4 py-2 rounded-none text-xs tracking-widest hover:bg-neon hover:text-black transition-colors uppercase"><ChevronLeft size={16} /> {ui.goBack}</button>
-        <div className="text-center mb-12"><h2 className="text-3xl font-pixel mb-4 drop-shadow-md text-white">{ui.manualTitle}</h2><p className="text-white/50 tracking-widest font-sans uppercase text-sm">{ui.manualSub}</p></div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {map.map(s => (
-            <motion.div key={s.id} whileTap={{ scale: 0.95 }} onClick={() => toggle(s.id)} className={`p-10 border text-center transition-all duration-300 cursor-pointer ${selected.includes(s.id) ? 'border-neon bg-neon/10 scale-105 shadow-[0_0_15px_rgba(255,85,0,0.3)]' : 'border-white/10 bg-black/40 hover:bg-black/60'}`}>
-              <span className={`text-5xl block mb-6 transition-transform ${selected.includes(s.id) ? 'scale-110 drop-shadow-lg grayscale-0' : 'grayscale opacity-60'}`}>{s.icon}</span>
-              <span className={`font-pixel text-[10px] uppercase leading-relaxed ${selected.includes(s.id) ? 'text-neon' : 'text-white/60'}`}>{s.label}</span>
-            </motion.div>
-          ))}
+      <motion.div {...pageTransition} className="max-w-3xl mx-auto w-full pb-20 pt-6 text-white">
+        <button onClick={() => navTo("onboarding")} className="text-neon border border-neon font-bold mb-8 flex items-center gap-2 bg-black/40 px-4 py-2 text-xs tracking-widest hover:bg-neon hover:text-black transition-colors uppercase"><ChevronLeft size={16} /> {ui.goBack}</button>
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-pixel mb-3 text-white">{ui.manualTitle}</h2>
+          <p className="text-white/50 tracking-widest font-sans text-xs uppercase">{ui.manualSub}</p>
         </div>
-        <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => handleManualSubmit(selected)} disabled={loading || selected.length === 0} className={`w-full max-w-md mx-auto font-sans uppercase font-black text-sm tracking-widest py-5 mt-16 flex items-center justify-center border-2 transition-all ${loading ? 'bg-white/10 text-white/30 border-white/10' : selected.length === 0 ? 'bg-black/50 border-white/10 text-white/30 cursor-not-allowed' : 'bg-neon border-neon text-black btn-glow hover:bg-transparent hover:text-neon'}`}>
-          {loading ? <span className="flex items-center gap-2 text-white"><Loader2 className="animate-spin text-neon" /> {ui.analyzing}</span> : <span>{ui.findOpportunities}</span>}
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
+          {skillMap.map(s => {
+            const Icon = s.icon;
+            const active = selected.includes(s.id);
+            return (
+              <motion.div key={s.id} whileTap={{ scale: 0.93 }} onClick={() => toggle(s.id)}
+                className={`flex flex-col items-center justify-center p-6 md:p-8 border text-center transition-all duration-200 cursor-pointer ${active ? 'border-neon bg-neon/10 shadow-[0_0_15px_rgba(255,85,0,0.3)]' : 'border-white/10 bg-black/40 hover:bg-black/60'}`}>
+                <Icon size={36} className={`mb-3 transition-all ${active ? 'text-neon scale-110' : 'text-white/30'}`} />
+                <span className={`font-bold text-[10px] uppercase tracking-wider ${active ? 'text-neon' : 'text-white/50'}`}>{s.label}</span>
+              </motion.div>
+            );
+          })}
+        </div>
+        <motion.button whileTap={{ scale: 0.97 }} onClick={() => handleManualSubmit(selected)} disabled={loading || selected.length === 0}
+          className={`w-full max-w-md mx-auto block font-sans uppercase font-black text-sm tracking-widest py-5 mt-12 border-2 transition-all ${loading ? 'bg-white/10 text-white/30 border-white/10' : selected.length === 0 ? 'bg-black/50 border-white/10 text-white/30 cursor-not-allowed' : 'bg-neon border-neon text-black btn-glow hover:bg-transparent hover:text-neon'}`}>
+          {loading ? <span className="flex items-center justify-center gap-2 text-white"><Loader2 className="animate-spin text-neon" /> {ui.analyzing}</span> : <span>{ui.findOpportunities}</span>}
         </motion.button>
       </motion.div>
     );
@@ -308,39 +402,68 @@ function App() {
   }
 
   const ResultsScreen = () => (
-    <motion.div {...pageTransition} className="max-w-6xl mx-auto w-full px-4 lg:px-0 grid grid-cols-1 lg:grid-cols-12 gap-10 pb-20">
-      <div className="lg:col-span-8 space-y-8">
-        <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
-            <button onClick={() => navTo("onboarding")} className="text-neon font-pixel text-[10px] flex items-center gap-2 hover:text-white transition-colors uppercase"><ChevronLeft size={16} /> {ui.startOver}</button>
-            <div className="bg-green-500/10 text-green-400 px-4 py-2 text-[10px] font-pixel tracking-widest uppercase border border-green-500/20 shadow-[0_0_10px_rgba(34,197,94,0.1)] flex items-center gap-2"><ShieldCheck size={14} /> {ui.skillsVerified}</div>
-        </div>
-        <div>
-          <h2 className="text-xl md:text-2xl font-pixel mb-8 text-white flex items-center gap-4 uppercase"><Star className="text-neon" size={24} /> {ui.topJobMatches}</h2>
-          <div className="space-y-6 text-white font-sans">
-            {jobs.length === 0 ? <div className="p-12 border border-white/10 text-center font-pixel text-xs text-white/40 tracking-widest uppercase">{ui.noMatch}</div> : jobs.map((job, idx) => (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1 }} key={job.id} className="bg-black/40 backdrop-blur-xl border border-white/20 p-8 relative overflow-hidden hover:border-white/40">
-                  <div className="absolute top-0 right-0 bg-white/5 text-white/50 tracking-[0.3em] font-black uppercase px-6 py-3 text-[10px] border-l border-b border-white/10">MATCH: {job.match_score}%</div>
-                  <h3 className="text-xl font-pixel mt-4 uppercase text-white pr-24 leading-relaxed">{job.title}</h3>
-                  <p className="text-neon font-bold tracking-widest uppercase mt-4 text-xs flex items-center gap-2"><Briefcase size={16} /> {job.company} <span className="text-white/30">|</span> {job.location}</p>
-                  <p className="text-sm text-white/70 mt-4 leading-relaxed font-light border-l border-white/20 pl-4">{job.description}</p>
-                  <AnimatePresence>{jobTips[job.id] && (<motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} className="mt-8 bg-neon/10 border border-neon/30 p-6"><h4 className="font-pixel text-[10px] text-neon uppercase mb-4 tracking-widest"><Lightbulb size={14} className="inline"/> SYSTEM ADVICE</h4><ul className="list-disc pl-5 space-y-3 text-white/80 text-xs">{jobTips[job.id].map((tip, i) => <li key={i}>{tip}</li>)}</ul></motion.div>)}</AnimatePresence>
-                  <div className="mt-8 flex flex-col md:flex-row gap-4">
-                    <a href={job.apply_url || "#"} target="_blank" className="flex-1 text-center bg-neon text-black tracking-[0.2em] font-black uppercase py-4 border border-neon btn-glow transition-colors">{ui.applyNow}</a>
-                    <button onClick={() => fetchJobTips(job)} disabled={tipsLoading === job.id} className="px-6 bg-transparent text-white font-bold tracking-[0.2em] uppercase py-4 border border-white/30 flex items-center justify-center gap-3 transition hover:border-white">{tipsLoading === job.id ? <Loader2 className="animate-spin" size={18}/> : <><Lightbulb size={18}/> {ui.getTips}</>}</button>
-                    <button onClick={() => startInterview(job)} disabled={interviewLoading} className="px-6 bg-transparent text-white font-bold tracking-[0.2em] uppercase py-4 border border-white/30 flex items-center justify-center gap-3 transition hover:border-white">{interviewLoading ? <Loader2 className="animate-spin" size={18}/> : <><Target size={18}/> {ui.aiInterview}</>}</button>
-                  </div>
-                </motion.div>
-              ))}
-          </div>
-        </div>
+    <motion.div {...pageTransition} className="w-full max-w-4xl mx-auto pb-20">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+          <button onClick={() => navTo("onboarding")} className="text-neon font-bold text-xs flex items-center gap-2 hover:text-white transition-colors uppercase tracking-widest border border-neon px-4 py-2 bg-black/40"><ChevronLeft size={16} /> {ui.startOver}</button>
+          <div className="bg-green-500/10 text-green-400 px-4 py-2 text-[10px] font-bold tracking-widest uppercase border border-green-500/20 flex items-center gap-2"><ShieldCheck size={14} /> {ui.skillsVerified}</div>
       </div>
-      <div className="lg:col-span-4 space-y-8 pt-10 lg:pt-0">
-         <div className="bg-black/40 backdrop-blur-xl border border-white/20 p-8 shadow-2xl">
-             <h3 className="font-pixel text-[10px] text-white/50 tracking-[0.3em] uppercase mb-6 flex items-center gap-3"><ShieldCheck className="text-neon" size={16}/> VERIFIED SKILL VECTORS</h3>
-             <div className="flex flex-wrap gap-2">{skills.map(s => (<span key={s} className="bg-white/5 text-white/80 px-4 py-2 border border-white/10 font-sans font-medium text-xs tracking-wider uppercase drop-shadow-sm">{s}</span>))}</div>
-         </div>
-         <div className="bg-black/40 backdrop-blur-xl border border-white/20 p-8 shadow-2xl"><h3 className="font-pixel text-[10px] text-white/50 tracking-[0.3em] uppercase mb-6">TRAINING PATH</h3><LeetcodeHub company={targetCompany} skills={skills} /></div>
+
+      {/* Verified Skills Tags */}
+      <div className="mb-8 flex flex-wrap gap-2">
+        {skills.map(s => (<span key={s} className="bg-white/5 text-white/70 px-4 py-2 border border-white/10 font-sans font-medium text-xs tracking-wider uppercase">{s}</span>))}
       </div>
+
+      <h2 className="text-xl md:text-2xl font-pixel mb-8 text-white flex items-center gap-4 uppercase"><Star className="text-neon" size={24} /> {ui.topJobMatches}</h2>
+      
+      {/* Job Cards — Large, mobile-friendly */}
+      <div className="space-y-8">
+        {jobs.length === 0 ? <div className="p-12 border border-white/10 text-center text-white/40 text-sm">{ui.noMatch}</div> : jobs.map((job, idx) => (
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.12 }} key={job.id}
+            className="bg-black/50 backdrop-blur-xl border border-white/20 p-6 md:p-10 relative overflow-hidden hover:border-neon/40 transition-colors">
+            
+            {/* Match Badge */}
+            <div className="absolute top-0 right-0 bg-neon/10 text-neon tracking-[0.3em] font-black uppercase px-5 py-3 text-xs border-l border-b border-neon/30">MATCH {job.match_score}%</div>
+            
+            {/* Title */}
+            <h3 className="text-lg md:text-2xl font-pixel mt-2 uppercase text-white pr-28 leading-relaxed">{job.title}</h3>
+            
+            {/* Company & Location */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-4">
+              <p className="text-neon font-bold tracking-widest uppercase text-xs flex items-center gap-2"><Briefcase size={16} /> {job.company}</p>
+              <p className="text-white/40 text-xs flex items-center gap-1 uppercase tracking-wider"><MapPin size={12}/> {job.location}</p>
+            </div>
+            
+            {/* Description */}
+            <p className="text-sm text-white/60 mt-5 leading-relaxed font-light">{job.description}</p>
+            
+            {/* Skills Tags */}
+            {job.skills && <div className="flex flex-wrap gap-2 mt-5">{job.skills.map(sk => (<span key={sk} className="text-[10px] uppercase tracking-wider px-3 py-1.5 border border-white/10 text-white/40 bg-white/5 font-bold">{sk}</span>))}</div>}
+            
+            {/* Tips Panel */}
+            <AnimatePresence>{jobTips[job.id] && (<motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} className="mt-6 bg-neon/5 border border-neon/20 p-5"><h4 className="text-[10px] text-neon uppercase mb-3 tracking-widest font-bold"><Lightbulb size={12} className="inline mr-1"/> TIPS</h4><ul className="list-disc pl-5 space-y-2 text-white/70 text-xs">{jobTips[job.id].map((tip, i) => <li key={i}>{tip}</li>)}</ul></motion.div>)}</AnimatePresence>
+            
+            {/* Action Buttons — LARGE Apply */}
+            <div className="mt-8 flex flex-col gap-4">
+              <a href={job.apply_url || "https://pminternship.mca.gov.in/"} target="_blank" rel="noopener noreferrer"
+                className="w-full text-center bg-neon text-black tracking-[0.15em] font-black uppercase py-5 md:py-6 text-base border-2 border-neon btn-glow transition-all hover:bg-transparent hover:text-neon flex items-center justify-center gap-3">
+                <Globe size={20} /> APPLY ON PM INTERNSHIP PORTAL →
+              </a>
+              <div className="grid grid-cols-2 gap-3">
+                <button onClick={() => fetchJobTips(job)} disabled={tipsLoading === job.id} className="bg-transparent text-white font-bold tracking-widest uppercase py-4 border border-white/20 flex items-center justify-center gap-2 text-xs hover:border-white transition-colors">{tipsLoading === job.id ? <Loader2 className="animate-spin" size={16}/> : <><Lightbulb size={16}/> {ui.getTips}</>}</button>
+                <button onClick={() => startInterview(job)} disabled={interviewLoading} className="bg-transparent text-white font-bold tracking-widest uppercase py-4 border border-white/20 flex items-center justify-center gap-2 text-xs hover:border-white transition-colors">{interviewLoading ? <Loader2 className="animate-spin" size={16}/> : <><Target size={16}/> {ui.aiInterview}</>}</button>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Training Path */}
+      {jobs.length > 0 && (
+        <div className="mt-12 bg-black/40 backdrop-blur-xl border border-white/20 p-8">
+          <h3 className="font-pixel text-[10px] text-white/50 tracking-[0.3em] uppercase mb-6">TRAINING PATH</h3>
+          <LeetcodeHub company={targetCompany} skills={skills} />
+        </div>
+      )}
     </motion.div>
   );
 
@@ -349,12 +472,23 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col relative w-full overflow-hidden bg-black selection:bg-neon selection:text-black">
-      <video autoPlay loop muted playsInline className="fixed top-0 left-0 w-full h-full object-cover z-0 opacity-40 mix-blend-screen pointer-events-none text-black"><source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-background-3094-large.mp4" type="video/mp4"/></video>
-      <div className="fixed top-0 left-0 w-full h-full bg-black/70 z-0 pointer-events-none"></div>
+      <video autoPlay loop muted playsInline className="fixed top-0 left-0 w-full h-full object-cover z-0 opacity-60 pointer-events-none"><source src="https://raw.githubusercontent.com/SkTheAdvanceGamer/Video/main/Futuristic_Data_Node_Animation.mp4" type="video/mp4"/></video>
+      <div className="fixed top-0 left-0 w-full h-full bg-black/30 z-0 pointer-events-none"></div>
 
       <div className="relative z-10 w-full min-h-screen flex flex-col overflow-y-auto overflow-x-hidden h-screen">
           <Header language={language} selectLanguage={selectLanguage} user={user} onLogout={handleLogout} />
-          <main className="flex-1 w-full px-6 md:px-12 flex flex-col items-center pt-10">
+          {/* Language Toggle Bar */}
+          <div className="w-full flex justify-center py-3 bg-black/30 backdrop-blur-sm border-b border-white/5">
+            <div className="flex items-center gap-1 bg-black/50 border border-white/10 p-1">
+              {LANG_OPTIONS.map(lo => (
+                <button key={lo.code} onClick={() => selectLanguage(lo)}
+                  className={`px-5 py-2.5 text-xs font-bold tracking-wider transition-all flex items-center gap-2 ${language === lo.code ? 'bg-neon text-black' : 'text-white/50 hover:text-white'}`}>
+                  {lo.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <main className="flex-1 w-full px-4 md:px-12 flex flex-col items-center pt-6">
             {translating && (<div className="fixed top-24 right-10 bg-black/80 text-neon px-6 py-3 border border-neon font-pixel text-[10px] tracking-widest uppercase shadow-[0_0_15px_rgba(255,85,0,0.3)] z-50 flex items-center gap-3"><Loader2 className="animate-spin" size={12}/> DECODING LOCALE...</div>)}
             <AnimatePresence mode="wait">
               {screen === "onboarding" && <OnboardingScreen key="onboarding" />}

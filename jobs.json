@@ -1,35 +1,563 @@
 [
-  { "id": 1, "sector": "Agriculture", "title": "Crop Data Assistant", "company": "AgriData Co.", "location": "Amaravati", "education": "12th Pass", "skills": ["data entry", "agriculture", "typing"], "description": "Log daily crop yield data into rural registry systems.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 2, "sector": "Mechanics", "title": "Solar Panel Technician", "company": "EcoVillage grids", "location": "Visakhapatnam", "education": "Diploma", "skills": ["hardware", "wiring", "solar"], "description": "Assist in installing and maintaining solar grids in rural districts.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 3, "sector": "IT Support", "title": "Kiosk Support Operator", "company": "Digital Village", "location": "Vijayawada", "education": "12th Pass", "skills": ["networking", "hardware", "troubleshooting"], "description": "Provide basic IT troubleshooting for local e-governance kiosks.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 4, "sector": "Logistics", "title": "Inventory Clerk", "company": "AgriSupply Co.", "location": "Remote", "education": "10th Pass", "skills": ["inventory", "packaging", "data entry"], "description": "Manage stock levels and track dispatch of agricultural supplies.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 5, "sector": "Healthcare", "title": "Rural Clinic Assistant", "company": "HealthFirst", "location": "Guntur", "education": "12th Pass", "skills": ["first aid", "health records", "patient care"], "description": "Assist with patient intake and digitizing health records.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 6, "sector": "Software Engineering", "title": "Python Developer Intern", "company": "TechTonic", "location": "Remote", "education": "Graduate", "skills": ["python", "software development", "git"], "description": "Write and maintain Python scripts for internal dashboards.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 7, "sector": "Software Engineering", "title": "Frontend Developer Intern", "company": "WebWizards", "location": "Hyderabad", "education": "Graduate", "skills": ["html", "css", "javascript", "react"], "description": "Build responsive UI components for our main web application.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 8, "sector": "Logistics", "title": "Warehouse Assistant", "company": "QuickShip", "location": "Chennai", "education": "10th Pass", "skills": ["inventory", "logistics", "packing"], "description": "Assist in day-to-day warehouse operations and inventory counting.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 9, "sector": "Marketing", "title": "Social Media Intern", "company": "BrandBoost", "location": "Remote", "education": "12th Pass", "skills": ["social media", "marketing", "content creation"], "description": "Manage social media accounts and create engaging content.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 10, "sector": "Finance", "title": "Accounting Intern", "company": "MoneyMatters", "location": "Mumbai", "education": "Graduate", "skills": ["accounting", "excel", "data entry"], "description": "Assist the accounting team with data entry and basic financial reports.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 11, "sector": "Retail", "title": "Retail Sales Associate Intern", "company": "ShopRite", "location": "Delhi", "education": "10th Pass", "skills": ["customer service", "sales", "communication"], "description": "Help customers find products and maintain store displays.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 12, "sector": "Data Science", "title": "Data Analyst Intern", "company": "DataDriven", "location": "Bangalore", "education": "Graduate", "skills": ["sql", "python", "data analysis"], "description": "Analyze datasets to extract actionable insights for clients.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 13, "sector": "Design", "title": "Graphic Design Intern", "company": "CreativeMinds", "location": "Pune", "education": "Diploma", "skills": ["design", "photoshop", "illustrator"], "description": "Create visual assets for marketing campaigns and social media.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 14, "sector": "HR", "title": "Human Resources Intern", "company": "PeopleFirst", "location": "Noida", "education": "Graduate", "skills": ["recruitment", "communication", "hr"], "description": "Assist with recruitment processes and employee onboarding.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 15, "sector": "Customer Support", "title": "Customer Support Trainee", "company": "HelpDesk Inc.", "location": "Remote", "education": "12th Pass", "skills": ["customer service", "communication", "typing"], "description": "Handle incoming customer inquiries via email and chat.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 16, "sector": "Agriculture", "title": "Farm Management Intern", "company": "GreenAcres", "location": "Lucknow", "education": "Diploma", "skills": ["agriculture", "management", "farming"], "description": "Assist in overseeing daily farm operations and crop planning.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 17, "sector": "Mechanics", "title": "Auto Mechanic Intern", "company": "FixIt Garage", "location": "Jaipur", "education": "10th Pass", "skills": ["mechanic", "repair", "automotive"], "description": "Learn to diagnose and repair issues in various vehicles.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 18, "sector": "IT Support", "title": "Helpdesk Support Intern", "company": "TechSolutions", "location": "Kolkata", "education": "12th Pass", "skills": ["networking", "troubleshooting", "hardware"], "description": "Provide level 1 technical support to internal employees.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 19, "sector": "Education", "title": "Teaching Assistant Intern", "company": "EduCorp", "location": "Ahmedabad", "education": "Graduate", "skills": ["teaching", "communication", "education"], "description": "Assist teachers with lesson planning and student evaluation.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 20, "sector": "Healthcare", "title": "Pharmacy Assistant Intern", "company": "MediCare", "location": "Surat", "education": "Diploma", "skills": ["pharmacy", "health records", "customer service"], "description": "Assist pharmacists with dispensing medication and managing inventory.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 21, "sector": "Logistics", "title": "Delivery Coordinator Intern", "company": "FastTrack Logistics", "location": "Indore", "education": "12th Pass", "skills": ["logistics", "dispatch", "coordination"], "description": "Coordinate delivery schedules and track shipments.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 22, "sector": "Manufacturing", "title": "Production Line Trainee", "company": "BuildRight", "location": "Coimbatore", "education": "10th Pass", "skills": ["manufacturing", "assembly", "quality control"], "description": "Learn assembly line processes and basic quality control checks.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 23, "sector": "Retail", "title": "Store Supervisor Intern", "company": "MegaMart", "location": "Bhopal", "education": "Graduate", "skills": ["retail", "management", "customer service"], "description": "Assist the store manager in daily retail operations.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 24, "sector": "Software Engineering", "title": "Backend Engineering Intern", "company": "ServerMinds", "location": "Remote", "education": "Graduate", "skills": ["java", "sql", "backend"], "description": "Develop and maintain server-side logic and database schemas.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 25, "sector": "Data Science", "title": "Machine Learning Intern", "company": "AI Innovations", "location": "Hyderabad", "education": "Graduate", "skills": ["python", "machine learning", "data science"], "description": "Build and test basic machine learning models for predictive analysis.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 26, "sector": "Design", "title": "UI/UX Design Intern", "company": "PixelPerfect", "location": "Bangalore", "education": "Graduate", "skills": ["design", "figma", "ui/ux"], "description": "Design user interfaces and conduct simple user testing.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 27, "sector": "Content", "title": "Content Writing Intern", "company": "WordSmiths", "location": "Remote", "education": "12th Pass", "skills": ["writing", "content creation", "communication"], "description": "Write articles and blog posts on various topics.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 28, "sector": "Sales", "title": "Business Development Intern", "company": "GrowthPartners", "location": "Mumbai", "education": "Graduate", "skills": ["sales", "communication", "negotiation"], "description": "Identify potential clients and assist in sales outreach.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 29, "sector": "Engineering", "title": "Civil Engineering Intern", "company": "ConstructPro", "location": "Delhi", "education": "Graduate", "skills": ["engineering", "autocad", "civil"], "description": "Assist civil engineers in project planning and site inspections.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 30, "sector": "Hospitality", "title": "Hotel Management Trainee", "company": "GrandStay Hotels", "location": "Goa", "education": "Diploma", "skills": ["hospitality", "customer service", "management"], "description": "Learn operations across front desk, housekeeping, and F&B.", "apply_url": "https://pminternship.mca.gov.in/" },
-  { "id": 31, "sector": "Software Engineering", "title": "Software Developer Intern", "company": "Google India", "location": "Bangalore", "education": "Graduate", "skills": ["python", "c++", "java", "algorithms", "data structures"], "description": "Work on core search infrastructure and backend services.", "apply_url": "https://careers.google.com/internships/" },
-  { "id": 32, "sector": "Software Engineering", "title": "SDE Intern", "company": "Amazon", "location": "Hyderabad", "education": "Graduate", "skills": ["java", "aws", "system design", "algorithms"], "description": "Design and build scalable AWS services for AWS Core.", "apply_url": "https://amazon.jobs/en/categories/student-programs" },
-  { "id": 33, "sector": "Design", "title": "Product Design Intern", "company": "Microsoft", "location": "Noida", "education": "Graduate", "skills": ["ui/ux", "figma", "user research", "prototyping"], "description": "Collaborate with PMs to design beautiful user experiences for MS Teams.", "apply_url": "https://careers.microsoft.com/students/" }
+  {
+    "id": 1,
+    "sector": "IT & Technology",
+    "title": "IT Support Intern",
+    "company": "Tata Consultancy Services (TCS)",
+    "location": "Mumbai",
+    "education": "12th Pass",
+    "skills": [
+      "networking",
+      "troubleshooting",
+      "hardware",
+      "data entry"
+    ],
+    "description": "Provide Level 1 IT support at TCS branch offices. Assist employees with hardware issues, software installation, and network connectivity under the PM Internship Scheme.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 2,
+    "sector": "Banking & Finance",
+    "title": "Banking Operations Intern",
+    "company": "State Bank of India (SBI)",
+    "location": "Delhi",
+    "education": "Graduate",
+    "skills": [
+      "accounting",
+      "excel",
+      "data entry",
+      "customer service"
+    ],
+    "description": "Assist with account opening processes, KYC verification, and customer query resolution at SBI branches across Delhi NCR.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 3,
+    "sector": "Oil & Gas",
+    "title": "Plant Safety Intern",
+    "company": "Reliance Industries Ltd",
+    "location": "Jamnagar",
+    "education": "Diploma",
+    "skills": [
+      "safety protocols",
+      "inspection",
+      "documentation",
+      "quality control"
+    ],
+    "description": "Support the safety inspection team at the Jamnagar refinery complex. Document compliance reports and assist in safety drill coordination.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 4,
+    "sector": "Automotive",
+    "title": "Production Line Trainee",
+    "company": "Maruti Suzuki India",
+    "location": "Gurugram",
+    "education": "10th Pass",
+    "skills": [
+      "manufacturing",
+      "assembly",
+      "quality control",
+      "mechanic"
+    ],
+    "description": "Work on the vehicle assembly line at the Manesar plant. Learn quality inspection processes and assist senior technicians.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 5,
+    "sector": "Telecommunications",
+    "title": "Network Field Intern",
+    "company": "Bharti Airtel",
+    "location": "Bangalore",
+    "education": "Diploma",
+    "skills": [
+      "networking",
+      "hardware",
+      "troubleshooting",
+      "communication"
+    ],
+    "description": "Assist field engineers in mobile tower installation and maintenance. Conduct signal quality tests across Bangalore region.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 6,
+    "sector": "FMCG & Retail",
+    "title": "Supply Chain Intern",
+    "company": "Hindustan Unilever (HUL)",
+    "location": "Chennai",
+    "education": "Graduate",
+    "skills": [
+      "logistics",
+      "inventory",
+      "excel",
+      "supply chain"
+    ],
+    "description": "Track product distribution flows from warehouses to retail outlets. Analyze supply chain efficiency data using Excel dashboards.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 7,
+    "sector": "Mining & Metals",
+    "title": "Quality Lab Assistant",
+    "company": "Tata Steel Ltd",
+    "location": "Jamshedpur",
+    "education": "Diploma",
+    "skills": [
+      "quality control",
+      "documentation",
+      "data entry",
+      "lab safety"
+    ],
+    "description": "Assist the quality lab team in testing metal samples. Record results in the digital quality management system.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 8,
+    "sector": "IT & Technology",
+    "title": "Software Testing Intern",
+    "company": "Infosys Ltd",
+    "location": "Pune",
+    "education": "Graduate",
+    "skills": [
+      "python",
+      "testing",
+      "sql",
+      "communication"
+    ],
+    "description": "Write and execute manual test cases for enterprise software. Learn automated testing frameworks under senior QA engineers.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 9,
+    "sector": "Power & Energy",
+    "title": "Solar Installation Trainee",
+    "company": "NTPC Ltd",
+    "location": "Ramagundam",
+    "education": "10th Pass",
+    "skills": [
+      "solar",
+      "wiring",
+      "hardware",
+      "safety protocols"
+    ],
+    "description": "Assist technicians in installing and maintaining solar panel arrays at NTPC's renewable energy division.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 10,
+    "sector": "Pharmaceuticals",
+    "title": "Pharmacy Packaging Intern",
+    "company": "Sun Pharmaceutical Industries",
+    "location": "Vadodara",
+    "education": "12th Pass",
+    "skills": [
+      "packaging",
+      "quality control",
+      "documentation",
+      "inventory"
+    ],
+    "description": "Operate packaging machinery and verify batch labeling accuracy. Maintain production logs for regulatory compliance.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 11,
+    "sector": "Agriculture & Fertilizers",
+    "title": "Agri-Data Collection Intern",
+    "company": "Indian Farmers Fertiliser Coop (IFFCO)",
+    "location": "Lucknow",
+    "education": "12th Pass",
+    "skills": [
+      "data entry",
+      "agriculture",
+      "typing",
+      "communication"
+    ],
+    "description": "Visit rural cooperatives to collect crop yield data and farmer feedback. Enter data into IFFCO's digital monitoring platform.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 12,
+    "sector": "Banking & Finance",
+    "title": "Insurance Processing Intern",
+    "company": "Life Insurance Corporation (LIC)",
+    "location": "Hyderabad",
+    "education": "Graduate",
+    "skills": [
+      "data entry",
+      "accounting",
+      "excel",
+      "customer service"
+    ],
+    "description": "Process new policy applications. Verify documentation and assist walk-in customers at LIC divisional offices.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 13,
+    "sector": "Construction & Infrastructure",
+    "title": "Civil Site Intern",
+    "company": "Larsen & Toubro (L&T)",
+    "location": "Ahmedabad",
+    "education": "Diploma",
+    "skills": [
+      "engineering",
+      "autocad",
+      "documentation",
+      "safety protocols"
+    ],
+    "description": "Support on-site project managers with daily progress reports. Learn AutoCAD drafting and safety compliance auditing.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 14,
+    "sector": "IT & Technology",
+    "title": "Data Entry & Digitization Intern",
+    "company": "Wipro Ltd",
+    "location": "Remote",
+    "education": "12th Pass",
+    "skills": [
+      "data entry",
+      "typing",
+      "excel",
+      "ms office"
+    ],
+    "description": "Digitize paper records into electronic databases for government e-governance projects under the PM Scheme.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 15,
+    "sector": "Automotive",
+    "title": "Service Center Intern",
+    "company": "Mahindra & Mahindra",
+    "location": "Nasik",
+    "education": "10th Pass",
+    "skills": [
+      "mechanic",
+      "repair",
+      "automotive",
+      "customer service"
+    ],
+    "description": "Learn vehicle diagnostics and repair procedures at authorized Mahindra service centers under PM Internship.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 16,
+    "sector": "Healthcare",
+    "title": "Rural Health Outreach Intern",
+    "company": "Apollo Hospitals",
+    "location": "Visakhapatnam",
+    "education": "12th Pass",
+    "skills": [
+      "first aid",
+      "health records",
+      "patient care",
+      "communication"
+    ],
+    "description": "Assist mobile health units in rural districts with patient registration and basic health screenings.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 17,
+    "sector": "Logistics & E-Commerce",
+    "title": "Warehouse Operations Intern",
+    "company": "Flipkart",
+    "location": "Kolkata",
+    "education": "10th Pass",
+    "skills": [
+      "inventory",
+      "logistics",
+      "packaging",
+      "dispatch"
+    ],
+    "description": "Sort and pack customer orders at the Flipkart fulfillment center. Learn warehouse management systems.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 18,
+    "sector": "Steel & Manufacturing",
+    "title": "Machine Operator Trainee",
+    "company": "JSW Steel Ltd",
+    "location": "Bellary",
+    "education": "10th Pass",
+    "skills": [
+      "manufacturing",
+      "mechanic",
+      "safety protocols",
+      "quality control"
+    ],
+    "description": "Operate CNC and rolling machines under supervision at JSW's integrated steel plant.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 19,
+    "sector": "IT & Technology",
+    "title": "Frontend Developer Intern",
+    "company": "HCLTech",
+    "location": "Noida",
+    "education": "Graduate",
+    "skills": [
+      "html",
+      "css",
+      "javascript",
+      "react",
+      "git"
+    ],
+    "description": "Build responsive web interfaces for client-facing portals. Work with React and modern frontend tech.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 20,
+    "sector": "Oil & Gas",
+    "title": "Pipeline Inspection Intern",
+    "company": "ONGC",
+    "location": "Dehradun",
+    "education": "Diploma",
+    "skills": [
+      "inspection",
+      "documentation",
+      "safety protocols",
+      "engineering"
+    ],
+    "description": "Assist pipeline integrity engineers with scheduled inspections and documentation at ONGC facilities.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 21,
+    "sector": "Telecommunications",
+    "title": "Customer Support Intern",
+    "company": "Jio (Reliance)",
+    "location": "Navi Mumbai",
+    "education": "12th Pass",
+    "skills": [
+      "customer service",
+      "communication",
+      "typing",
+      "troubleshooting"
+    ],
+    "description": "Handle inbound customer queries via chat and phone for Jio subscribers across India.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 22,
+    "sector": "FMCG & Retail",
+    "title": "Retail Store Intern",
+    "company": "ITC Limited",
+    "location": "Kolkata",
+    "education": "12th Pass",
+    "skills": [
+      "customer service",
+      "sales",
+      "inventory",
+      "communication"
+    ],
+    "description": "Assist in daily store operations and customer engagement at ITC retail outlets.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 23,
+    "sector": "Banking & Finance",
+    "title": "Digital Banking Intern",
+    "company": "HDFC Bank",
+    "location": "Mumbai",
+    "education": "Graduate",
+    "skills": [
+      "excel",
+      "data analysis",
+      "communication",
+      "accounting"
+    ],
+    "description": "Support the digital banking team in analyzing transaction patterns and customer behavior data.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 24,
+    "sector": "Power & Energy",
+    "title": "Electrical Maintenance Intern",
+    "company": "Power Grid Corporation",
+    "location": "Gurgaon",
+    "education": "Diploma",
+    "skills": [
+      "wiring",
+      "hardware",
+      "safety protocols",
+      "engineering"
+    ],
+    "description": "Assist senior electricians in substation maintenance and power distribution monitoring.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 25,
+    "sector": "IT & Technology",
+    "title": "Python Backend Intern",
+    "company": "Tech Mahindra",
+    "location": "Hyderabad",
+    "education": "Graduate",
+    "skills": [
+      "python",
+      "sql",
+      "git",
+      "data analysis"
+    ],
+    "description": "Develop REST APIs and database queries for internal tools at Tech Mahindra campus.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 26,
+    "sector": "Agriculture & Fertilizers",
+    "title": "Farm Equipment Maintenance Intern",
+    "company": "Rashtriya Chemicals & Fertilizers (RCF)",
+    "location": "Trombay",
+    "education": "10th Pass",
+    "skills": [
+      "mechanic",
+      "repair",
+      "hardware",
+      "agriculture"
+    ],
+    "description": "Maintain and repair irrigation pumps, fertilizer dispensers, and farm equipment.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 27,
+    "sector": "Healthcare",
+    "title": "Hospital Admin Intern",
+    "company": "Fortis Healthcare",
+    "location": "Delhi",
+    "education": "Graduate",
+    "skills": [
+      "data entry",
+      "health records",
+      "excel",
+      "communication"
+    ],
+    "description": "Manage patient records digitization and appointment scheduling at Fortis hospitals.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 28,
+    "sector": "Construction & Infrastructure",
+    "title": "Road Survey Intern",
+    "company": "NHAI",
+    "location": "Jaipur",
+    "education": "Diploma",
+    "skills": [
+      "engineering",
+      "documentation",
+      "data entry",
+      "inspection"
+    ],
+    "description": "Assist survey teams in road quality assessment for national highway projects.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 29,
+    "sector": "Logistics & E-Commerce",
+    "title": "Last-Mile Delivery Coordinator",
+    "company": "Amazon India",
+    "location": "Bangalore",
+    "education": "12th Pass",
+    "skills": [
+      "logistics",
+      "dispatch",
+      "coordination",
+      "communication"
+    ],
+    "description": "Coordinate delivery schedules and route optimization for last-mile operations.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 30,
+    "sector": "IT & Technology",
+    "title": "Data Science Intern",
+    "company": "Cognizant",
+    "location": "Bangalore",
+    "education": "Graduate",
+    "skills": [
+      "python",
+      "machine learning",
+      "data analysis",
+      "sql"
+    ],
+    "description": "Analyze large datasets using Python. Build visualization dashboards for client reports.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 31,
+    "sector": "Steel & Manufacturing",
+    "title": "Welding Shop Trainee",
+    "company": "SAIL (Steel Authority of India)",
+    "location": "Bhilai",
+    "education": "10th Pass",
+    "skills": [
+      "welding",
+      "manufacturing",
+      "safety protocols",
+      "mechanic"
+    ],
+    "description": "Learn MIG and TIG welding techniques at the SAIL Bhilai steel plant.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 32,
+    "sector": "Pharmaceuticals",
+    "title": "Clinical Data Intern",
+    "company": "Cipla Ltd",
+    "location": "Mumbai",
+    "education": "Graduate",
+    "skills": [
+      "data entry",
+      "excel",
+      "documentation",
+      "health records"
+    ],
+    "description": "Enter clinical trial data into electronic systems. Assist in regulatory document preparation.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 33,
+    "sector": "Telecommunications",
+    "title": "Digital Marketing Intern",
+    "company": "Vodafone Idea (Vi)",
+    "location": "Pune",
+    "education": "Graduate",
+    "skills": [
+      "marketing",
+      "social media",
+      "content creation",
+      "communication"
+    ],
+    "description": "Create social media content and assist in digital marketing campaigns for Vi telecom.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 34,
+    "sector": "FMCG & Retail",
+    "title": "Warehouse Quality Intern",
+    "company": "Dabur India",
+    "location": "Ghaziabad",
+    "education": "12th Pass",
+    "skills": [
+      "quality control",
+      "packaging",
+      "inventory",
+      "documentation"
+    ],
+    "description": "Inspect incoming raw materials and outgoing finished goods at Dabur manufacturing plant.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  },
+  {
+    "id": 35,
+    "sector": "Power & Energy",
+    "title": "Wind Farm Maintenance Intern",
+    "company": "Adani Green Energy",
+    "location": "Kutch",
+    "education": "Diploma",
+    "skills": [
+      "hardware",
+      "wiring",
+      "safety protocols",
+      "mechanic"
+    ],
+    "description": "Assist with wind turbine blade inspection and generator maintenance at Adani's wind farm.",
+    "apply_url": "https://pminternship.mca.gov.in/"
+  }
 ]
