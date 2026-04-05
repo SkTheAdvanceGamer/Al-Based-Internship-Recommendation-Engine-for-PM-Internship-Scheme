@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Loader2 } from 'lucide-react';
 import { auth, provider, signInWithPopup } from '../firebase';
-
 export const LoginScreen = () => {
   const [loading, setLoading] = useState(false);
-
   const handleLogin = async () => {
       setLoading(true);
       try {
@@ -15,15 +13,12 @@ export const LoginScreen = () => {
           setLoading(false);
       }
   };
-
   return (
     <div className="bg-black flex items-center justify-center min-h-screen w-full relative z-50 px-4 overflow-hidden">
-        
         <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-60">
           <source src="https://raw.githubusercontent.com/SkTheAdvanceGamer/Video/main/Futuristic_Data_Node_Animation.mp4" type="video/mp4"/>
         </video>
         <div className="absolute inset-0 bg-black/30 z-10 pointer-events-none"></div>
-
         <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }}
             className="bg-black/40 backdrop-blur-2xl p-10 md:p-14 border border-white/10 w-full max-w-md text-center flex flex-col items-center relative overflow-hidden shadow-[0_0_50px_rgba(255,85,0,0.1)]"
@@ -31,14 +26,12 @@ export const LoginScreen = () => {
             <div className="w-20 h-20 bg-black border border-white/20 flex items-center justify-center mb-8 relative z-10 shadow-[0_0_20px_rgba(255,85,0,0.3)]">
                 <Sparkles className="text-neon w-8 h-8 float-subtle" />
             </div>
-            
             <div className="mb-10 relative z-10">
                 <h2 className="text-3xl font-pixel text-white mb-6 uppercase leading-tight drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">SYSTEM<br/><span className="text-neon">LOGIN</span></h2>
                 <p className="text-white/60 font-sans tracking-widest text-xs uppercase leading-relaxed border-l-2 border-neon pl-4 text-left">
                     Authentication sequence required to deploy AI Job Engine protocols.
                 </p>
             </div>
-            
             <motion.button 
                 whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                 onClick={handleLogin} disabled={loading}

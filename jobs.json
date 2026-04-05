@@ -1,563 +1,500 @@
 [
   {
     "id": 1,
-    "sector": "IT & Technology",
-    "title": "IT Support Intern",
-    "company": "Tata Consultancy Services (TCS)",
-    "location": "Mumbai",
-    "education": "12th Pass",
+    "title": "Sales Intern showroom staff",
+    "company": "Hindustan Petroleum Corporation Limited",
+    "location": "Telangana",
+    "sector": "Customer Care / Service",
+    "education": "Graduate",
+    "description": "Sales Intern showroom staff at Hindustan Petroleum Corporation Limited under PM Internship Scheme. Location: Telangana.",
     "skills": [
-      "networking",
-      "troubleshooting",
-      "hardware",
-      "data entry"
+      "sales",
+      "customer service",
+      "communication"
     ],
-    "description": "Provide Level 1 IT support at TCS branch offices. Assist employees with hardware issues, software installation, and network connectivity under the PM Internship Scheme.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 2,
-    "sector": "Banking & Finance",
-    "title": "Banking Operations Intern",
-    "company": "State Bank of India (SBI)",
-    "location": "Delhi",
+    "title": "Internship Trainee Sales",
+    "company": "Muthoot Finance Limited",
+    "location": "Telangana",
+    "sector": "Finance & Accounting",
     "education": "Graduate",
+    "description": "Internship Trainee Sales at Muthoot Finance Limited under PM Internship Scheme. Location: Telangana.",
     "skills": [
+      "sales",
+      "financial analysis",
       "accounting",
-      "excel",
-      "data entry",
-      "customer service"
+      "on-the-job training",
+      "communication"
     ],
-    "description": "Assist with account opening processes, KYC verification, and customer query resolution at SBI branches across Delhi NCR.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 3,
-    "sector": "Oil & Gas",
-    "title": "Plant Safety Intern",
-    "company": "Reliance Industries Ltd",
-    "location": "Jamnagar",
-    "education": "Diploma",
+    "title": "Internship traineecce",
+    "company": "Muthoot Finance Limited",
+    "location": "Telangana",
+    "sector": "Customer Care / Service",
+    "education": "Graduate",
+    "description": "Internship traineecce at Muthoot Finance Limited under PM Internship Scheme. Location: Telangana.",
     "skills": [
-      "safety protocols",
-      "inspection",
-      "documentation",
-      "quality control"
+      "customer service",
+      "on-the-job training",
+      "communication"
     ],
-    "description": "Support the safety inspection team at the Jamnagar refinery complex. Document compliance reports and assist in safety drill coordination.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 4,
-    "sector": "Automotive",
-    "title": "Production Line Trainee",
-    "company": "Maruti Suzuki India",
-    "location": "Gurugram",
-    "education": "10th Pass",
+    "title": "INTERNSHIP TRAINEE CCE",
+    "company": "Muthoot Finance Limited",
+    "location": "Telangana",
+    "sector": "Customer Care / Service",
+    "education": "Graduate",
+    "description": "INTERNSHIP TRAINEE CCE at Muthoot Finance Limited under PM Internship Scheme. Location: Telangana.",
     "skills": [
-      "manufacturing",
-      "assembly",
-      "quality control",
-      "mechanic"
+      "customer service",
+      "on-the-job training",
+      "communication"
     ],
-    "description": "Work on the vehicle assembly line at the Manesar plant. Learn quality inspection processes and assist senior technicians.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 5,
-    "sector": "Telecommunications",
-    "title": "Network Field Intern",
-    "company": "Bharti Airtel",
-    "location": "Bangalore",
-    "education": "Diploma",
+    "title": "prime Minister Internship Scheme",
+    "company": "Shriram General Insurance Company Limited",
+    "location": "Telangana",
+    "sector": "Sales & Marketing",
+    "education": "Graduate",
+    "description": "prime Minister Internship Scheme at Shriram General Insurance Company Limited under PM Internship Scheme. Location: Telangana.",
     "skills": [
-      "networking",
-      "hardware",
-      "troubleshooting",
+      "sales",
+      "marketing",
       "communication"
     ],
-    "description": "Assist field engineers in mobile tower installation and maintenance. Conduct signal quality tests across Bangalore region.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 6,
-    "sector": "FMCG & Retail",
-    "title": "Supply Chain Intern",
-    "company": "Hindustan Unilever (HUL)",
-    "location": "Chennai",
+    "title": "Merchandiser",
+    "company": "Dabur India Limited",
+    "location": "Telangana",
+    "sector": "Sales & Marketing",
     "education": "Graduate",
+    "description": "Merchandiser at Dabur India Limited under PM Internship Scheme. Location: Telangana.",
     "skills": [
-      "logistics",
-      "inventory",
-      "excel",
-      "supply chain"
+      "sales",
+      "marketing",
+      "merchandising",
+      "communication"
     ],
-    "description": "Track product distribution flows from warehouses to retail outlets. Analyze supply chain efficiency data using Excel dashboards.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 7,
-    "sector": "Mining & Metals",
-    "title": "Quality Lab Assistant",
-    "company": "Tata Steel Ltd",
-    "location": "Jamshedpur",
-    "education": "Diploma",
+    "title": "Internship trainee CCE",
+    "company": "Muthoot Finance Limited",
+    "location": "Telangana",
+    "sector": "Customer Care / Service",
+    "education": "Graduate",
+    "description": "Internship trainee CCE at Muthoot Finance Limited under PM Internship Scheme. Location: Telangana.",
     "skills": [
-      "quality control",
-      "documentation",
-      "data entry",
-      "lab safety"
+      "customer service",
+      "on-the-job training",
+      "communication"
     ],
-    "description": "Assist the quality lab team in testing metal samples. Record results in the digital quality management system.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 8,
-    "sector": "IT & Technology",
-    "title": "Software Testing Intern",
-    "company": "Infosys Ltd",
-    "location": "Pune",
+    "title": "Finance Intern",
+    "company": "Itc Limited",
+    "location": "Delhi",
+    "sector": "Finance & Accounting",
     "education": "Graduate",
+    "description": "Finance Intern at Itc Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "python",
-      "testing",
-      "sql",
+      "financial analysis",
+      "accounting",
       "communication"
     ],
-    "description": "Write and execute manual test cases for enterprise software. Learn automated testing frameworks under senior QA engineers.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 9,
-    "sector": "Power & Energy",
-    "title": "Solar Installation Trainee",
-    "company": "NTPC Ltd",
-    "location": "Ramagundam",
-    "education": "10th Pass",
+    "title": "Frontline Operations",
+    "company": "National Stock Exchange Of India Ltd.",
+    "location": "Delhi",
+    "sector": "General",
+    "education": "Graduate",
+    "description": "Frontline Operations at National Stock Exchange Of India Ltd. under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "solar",
-      "wiring",
-      "hardware",
-      "safety protocols"
+      "communication"
     ],
-    "description": "Assist technicians in installing and maintaining solar panel arrays at NTPC's renewable energy division.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 10,
-    "sector": "Pharmaceuticals",
-    "title": "Pharmacy Packaging Intern",
-    "company": "Sun Pharmaceutical Industries",
-    "location": "Vadodara",
-    "education": "12th Pass",
+    "title": "CSA Intern Retail Outlet",
+    "company": "Hindustan Petroleum Corporation Limited",
+    "location": "Delhi",
+    "sector": "Customer Care / Service",
+    "education": "Graduate",
+    "description": "CSA Intern Retail Outlet at Hindustan Petroleum Corporation Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "packaging",
-      "quality control",
-      "documentation",
-      "inventory"
+      "customer service",
+      "communication"
     ],
-    "description": "Operate packaging machinery and verify batch labeling accuracy. Maintain production logs for regulatory compliance.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 11,
-    "sector": "Agriculture & Fertilizers",
-    "title": "Agri-Data Collection Intern",
-    "company": "Indian Farmers Fertiliser Coop (IFFCO)",
-    "location": "Lucknow",
-    "education": "12th Pass",
+    "title": "Sales Internship",
+    "company": "Icici Prudential Asset Management Company Limited",
+    "location": "Delhi",
+    "sector": "Sales & Marketing",
+    "education": "Graduate",
+    "description": "Sales Internship at Icici Prudential Asset Management Company Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "data entry",
-      "agriculture",
-      "typing",
+      "sales",
+      "marketing",
       "communication"
     ],
-    "description": "Visit rural cooperatives to collect crop yield data and farmer feedback. Enter data into IFFCO's digital monitoring platform.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 12,
-    "sector": "Banking & Finance",
-    "title": "Insurance Processing Intern",
-    "company": "Life Insurance Corporation (LIC)",
-    "location": "Hyderabad",
+    "title": "IRFC PM Internship Scheme",
+    "company": "Indian Railway Finance Corporation Limited",
+    "location": "Delhi",
+    "sector": "Finance & Accounting",
     "education": "Graduate",
+    "description": "IRFC PM Internship Scheme at Indian Railway Finance Corporation Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "data entry",
+      "financial analysis",
       "accounting",
-      "excel",
-      "customer service"
+      "communication"
     ],
-    "description": "Process new policy applications. Verify documentation and assist walk-in customers at LIC divisional offices.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 13,
-    "sector": "Construction & Infrastructure",
-    "title": "Civil Site Intern",
-    "company": "Larsen & Toubro (L&T)",
-    "location": "Ahmedabad",
-    "education": "Diploma",
+    "title": "Sales and Relationship Manager",
+    "company": "Icici Bank Limited",
+    "location": "Delhi",
+    "sector": "Sales & Marketing",
+    "education": "Graduate",
+    "description": "Sales and Relationship Manager at Icici Bank Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "engineering",
-      "autocad",
-      "documentation",
-      "safety protocols"
+      "sales",
+      "marketing",
+      "public relations",
+      "communication"
     ],
-    "description": "Support on-site project managers with daily progress reports. Learn AutoCAD drafting and safety compliance auditing.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 14,
-    "sector": "IT & Technology",
-    "title": "Data Entry & Digitization Intern",
-    "company": "Wipro Ltd",
-    "location": "Remote",
-    "education": "12th Pass",
+    "title": "Sales Intern",
+    "company": "Sbi General Insurance Company Limited",
+    "location": "Delhi",
+    "sector": "Sales & Marketing",
+    "education": "Graduate",
+    "description": "Sales Intern at Sbi General Insurance Company Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "data entry",
-      "typing",
-      "excel",
-      "ms office"
+      "sales",
+      "marketing",
+      "communication"
     ],
-    "description": "Digitize paper records into electronic databases for government e-governance projects under the PM Scheme.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 15,
-    "sector": "Automotive",
-    "title": "Service Center Intern",
-    "company": "Mahindra & Mahindra",
-    "location": "Nasik",
-    "education": "10th Pass",
+    "title": "Finance Internship",
+    "company": "Itc Limited",
+    "location": "Delhi",
+    "sector": "Finance & Accounting",
+    "education": "Graduate",
+    "description": "Finance Internship at Itc Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "mechanic",
-      "repair",
-      "automotive",
-      "customer service"
+      "financial analysis",
+      "accounting",
+      "communication"
     ],
-    "description": "Learn vehicle diagnostics and repair procedures at authorized Mahindra service centers under PM Internship.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 16,
-    "sector": "Healthcare",
-    "title": "Rural Health Outreach Intern",
-    "company": "Apollo Hospitals",
-    "location": "Visakhapatnam",
-    "education": "12th Pass",
+    "title": "Training and Development",
+    "company": "Itc Limited",
+    "location": "Delhi",
+    "sector": "General",
+    "education": "Graduate",
+    "description": "Training and Development at Itc Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "first aid",
-      "health records",
-      "patient care",
       "communication"
     ],
-    "description": "Assist mobile health units in rural districts with patient registration and basic health screenings.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 17,
-    "sector": "Logistics & E-Commerce",
-    "title": "Warehouse Operations Intern",
-    "company": "Flipkart",
-    "location": "Kolkata",
-    "education": "10th Pass",
+    "title": "Human Resources Intern",
+    "company": "Itc Limited",
+    "location": "Delhi",
+    "sector": "General",
+    "education": "Graduate",
+    "description": "Human Resources Intern at Itc Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "inventory",
-      "logistics",
-      "packaging",
-      "dispatch"
+      "communication"
     ],
-    "description": "Sort and pack customer orders at the Flipkart fulfillment center. Learn warehouse management systems.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 18,
-    "sector": "Steel & Manufacturing",
-    "title": "Machine Operator Trainee",
-    "company": "JSW Steel Ltd",
-    "location": "Bellary",
-    "education": "10th Pass",
+    "title": "Food and Beverage Intern",
+    "company": "Itc Limited",
+    "location": "Delhi",
+    "sector": "Customer Care / Service",
+    "education": "Graduate",
+    "description": "Food and Beverage Intern at Itc Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "manufacturing",
-      "mechanic",
-      "safety protocols",
-      "quality control"
+      "customer service",
+      "communication"
     ],
-    "description": "Operate CNC and rolling machines under supervision at JSW's integrated steel plant.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 19,
-    "sector": "IT & Technology",
-    "title": "Frontend Developer Intern",
-    "company": "HCLTech",
-    "location": "Noida",
+    "title": "Customer Relationship Executive",
+    "company": "Tamilnad Mercantile Bank Limited",
+    "location": "Delhi",
+    "sector": "Sales & Marketing",
     "education": "Graduate",
+    "description": "Customer Relationship Executive at Tamilnad Mercantile Bank Limited under PM Internship Scheme. Location: Delhi.",
     "skills": [
-      "html",
-      "css",
-      "javascript",
-      "react",
-      "git"
+      "sales",
+      "marketing",
+      "customer service",
+      "public relations",
+      "communication"
     ],
-    "description": "Build responsive web interfaces for client-facing portals. Work with React and modern frontend tech.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 20,
-    "sector": "Oil & Gas",
-    "title": "Pipeline Inspection Intern",
-    "company": "ONGC",
-    "location": "Dehradun",
-    "education": "Diploma",
+    "title": "HR Executive",
+    "company": "Mahindra And Mahindra Financial Services Limited",
+    "location": "Maharashtra",
+    "sector": "Banking and financial Services",
+    "education": "Graduate",
+    "description": "HR Executive at Mahindra And Mahindra Financial Services Limited under PM Internship Scheme. Location: Maharashtra.",
     "skills": [
-      "inspection",
-      "documentation",
-      "safety protocols",
-      "engineering"
+      "human resources",
+      "communication"
     ],
-    "description": "Assist pipeline integrity engineers with scheduled inspections and documentation at ONGC facilities.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 21,
-    "sector": "Telecommunications",
-    "title": "Customer Support Intern",
-    "company": "Jio (Reliance)",
-    "location": "Navi Mumbai",
-    "education": "12th Pass",
+    "title": "Retail Sales Intern",
+    "company": "Reliance Industries Limited",
+    "location": "Maharashtra",
+    "sector": "Sales & Marketing",
+    "education": "Graduate",
+    "description": "Retail Sales Intern at Reliance Industries Limited under PM Internship Scheme. Location: Maharashtra.",
     "skills": [
-      "customer service",
-      "communication",
-      "typing",
-      "troubleshooting"
+      "sales",
+      "marketing",
+      "communication"
     ],
-    "description": "Handle inbound customer queries via chat and phone for Jio subscribers across India.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 22,
-    "sector": "FMCG & Retail",
-    "title": "Retail Store Intern",
-    "company": "ITC Limited",
-    "location": "Kolkata",
-    "education": "12th Pass",
+    "title": "Sales Intern",
+    "company": "Titan Company Limited",
+    "location": "Maharashtra",
+    "sector": "Sales & Marketing",
+    "education": "Graduate",
+    "description": "Sales Intern at Titan Company Limited under PM Internship Scheme. Location: Maharashtra.",
     "skills": [
-      "customer service",
       "sales",
-      "inventory",
+      "marketing",
       "communication"
     ],
-    "description": "Assist in daily store operations and customer engagement at ITC retail outlets.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 23,
+    "title": "Finance Intern",
+    "company": "Lemon Tree Hotels Limited",
+    "location": "Maharashtra",
     "sector": "Banking & Finance",
-    "title": "Digital Banking Intern",
-    "company": "HDFC Bank",
-    "location": "Mumbai",
     "education": "Graduate",
+    "description": "Finance Intern at Lemon Tree Hotels Limited under PM Internship Scheme. Location: Maharashtra.",
     "skills": [
-      "excel",
-      "data analysis",
-      "communication",
-      "accounting"
+      "financial analysis",
+      "communication"
     ],
-    "description": "Support the digital banking team in analyzing transaction patterns and customer behavior data.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 24,
-    "sector": "Power & Energy",
-    "title": "Electrical Maintenance Intern",
-    "company": "Power Grid Corporation",
-    "location": "Gurgaon",
-    "education": "Diploma",
+    "title": "Food and Beverage Steward",
+    "company": "Lemon Tree Hotels Limited",
+    "location": "Maharashtra",
+    "sector": "Hospitality",
+    "education": "Graduate",
+    "description": "Food and Beverage Steward at Lemon Tree Hotels Limited under PM Internship Scheme. Location: Maharashtra.",
     "skills": [
-      "wiring",
-      "hardware",
-      "safety protocols",
-      "engineering"
+      "communication"
     ],
-    "description": "Assist senior electricians in substation maintenance and power distribution monitoring.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 25,
-    "sector": "IT & Technology",
-    "title": "Python Backend Intern",
-    "company": "Tech Mahindra",
-    "location": "Hyderabad",
+    "title": "Interns",
+    "company": "Persistent Systems Limited",
+    "location": "Maharashtra",
+    "sector": "General",
     "education": "Graduate",
+    "description": "Interns at Persistent Systems Limited under PM Internship Scheme. Location: Maharashtra.",
     "skills": [
-      "python",
-      "sql",
-      "git",
-      "data analysis"
+      "communication"
     ],
-    "description": "Develop REST APIs and database queries for internal tools at Tech Mahindra campus.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 26,
-    "sector": "Agriculture & Fertilizers",
-    "title": "Farm Equipment Maintenance Intern",
-    "company": "Rashtriya Chemicals & Fertilizers (RCF)",
-    "location": "Trombay",
-    "education": "10th Pass",
+    "title": "Sales Intern",
+    "company": "Lemon Tree Hotels Limited",
+    "location": "Maharashtra",
+    "sector": "Sales & Marketing",
+    "education": "Graduate",
+    "description": "Sales Intern at Lemon Tree Hotels Limited under PM Internship Scheme. Location: Maharashtra.",
     "skills": [
-      "mechanic",
-      "repair",
-      "hardware",
-      "agriculture"
+      "sales",
+      "marketing",
+      "communication"
     ],
-    "description": "Maintain and repair irrigation pumps, fertilizer dispensers, and farm equipment.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 27,
-    "sector": "Healthcare",
-    "title": "Hospital Admin Intern",
-    "company": "Fortis Healthcare",
-    "location": "Delhi",
+    "title": "HR Executive",
+    "company": "Kotak Mahindra Bank Limited",
+    "location": "Karnataka",
+    "sector": "Banking and financial Services",
     "education": "Graduate",
+    "description": "HR Executive at Kotak Mahindra Bank Limited under PM Internship Scheme. Location: Karnataka.",
     "skills": [
-      "data entry",
-      "health records",
-      "excel",
+      "human resources",
       "communication"
     ],
-    "description": "Manage patient records digitization and appointment scheduling at Fortis hospitals.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 28,
-    "sector": "Construction & Infrastructure",
-    "title": "Road Survey Intern",
-    "company": "NHAI",
-    "location": "Jaipur",
-    "education": "Diploma",
+    "title": "Talent Acquistion Associate",
+    "company": "3M India Limited",
+    "location": "Karnataka",
+    "sector": "General",
+    "education": "Graduate",
+    "description": "Talent Acquistion Associate at 3M India Limited under PM Internship Scheme. Location: Karnataka.",
     "skills": [
-      "engineering",
-      "documentation",
-      "data entry",
-      "inspection"
+      "communication"
     ],
-    "description": "Assist survey teams in road quality assessment for national highway projects.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 29,
-    "sector": "Logistics & E-Commerce",
-    "title": "Last-Mile Delivery Coordinator",
-    "company": "Amazon India",
-    "location": "Bangalore",
-    "education": "12th Pass",
+    "title": "Customer Care Executive Intern",
+    "company": "Muthoot Finance Limited",
+    "location": "Karnataka",
+    "sector": "Finance & Accounting",
+    "education": "Graduate",
+    "description": "Customer Care Executive Intern at Muthoot Finance Limited under PM Internship Scheme. Location: Karnataka.",
     "skills": [
-      "logistics",
-      "dispatch",
-      "coordination",
+      "financial analysis",
+      "accounting",
+      "customer service",
       "communication"
     ],
-    "description": "Coordinate delivery schedules and route optimization for last-mile operations.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 30,
-    "sector": "IT & Technology",
-    "title": "Data Science Intern",
-    "company": "Cognizant",
-    "location": "Bangalore",
+    "title": "HR Intern",
+    "company": "Prestige Estates Projects Limited",
+    "location": "Karnataka",
+    "sector": "General",
     "education": "Graduate",
+    "description": "HR Intern at Prestige Estates Projects Limited under PM Internship Scheme. Location: Karnataka.",
     "skills": [
-      "python",
-      "machine learning",
-      "data analysis",
-      "sql"
+      "human resources",
+      "communication"
     ],
-    "description": "Analyze large datasets using Python. Build visualization dashboards for client reports.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 31,
-    "sector": "Steel & Manufacturing",
-    "title": "Welding Shop Trainee",
-    "company": "SAIL (Steel Authority of India)",
-    "location": "Bhilai",
-    "education": "10th Pass",
+    "title": "Sales",
+    "company": "Lemon Tree Hotels Limited",
+    "location": "Karnataka",
+    "sector": "Sales & Marketing",
+    "education": "Graduate",
+    "description": "Sales at Lemon Tree Hotels Limited under PM Internship Scheme. Location: Karnataka.",
     "skills": [
-      "welding",
-      "manufacturing",
-      "safety protocols",
-      "mechanic"
+      "sales",
+      "marketing",
+      "communication"
     ],
-    "description": "Learn MIG and TIG welding techniques at the SAIL Bhilai steel plant.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 32,
-    "sector": "Pharmaceuticals",
-    "title": "Clinical Data Intern",
-    "company": "Cipla Ltd",
-    "location": "Mumbai",
+    "title": "Research Intern",
+    "company": "Itc Limited",
+    "location": "Karnataka",
+    "sector": "Research and Development / Design / Product Development",
     "education": "Graduate",
+    "description": "Research Intern at Itc Limited under PM Internship Scheme. Location: Karnataka.",
     "skills": [
-      "data entry",
-      "excel",
-      "documentation",
-      "health records"
+      "product design",
+      "research & analysis",
+      "communication"
     ],
-    "description": "Enter clinical trial data into electronic systems. Assist in regulatory document preparation.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 33,
-    "sector": "Telecommunications",
-    "title": "Digital Marketing Intern",
-    "company": "Vodafone Idea (Vi)",
-    "location": "Pune",
+    "title": "Customer Relation Management",
+    "company": "Bharat Petroleum Corporation Limited",
+    "location": "Karnataka",
+    "sector": "Administration",
     "education": "Graduate",
+    "description": "Customer Relation Management at Bharat Petroleum Corporation Limited under PM Internship Scheme. Location: Karnataka.",
     "skills": [
-      "marketing",
-      "social media",
-      "content creation",
+      "administration",
+      "customer service",
+      "public relations",
       "communication"
     ],
-    "description": "Create social media content and assist in digital marketing campaigns for Vi telecom.",
     "apply_url": "https://pminternship.mca.gov.in/"
   },
   {
     "id": 34,
-    "sector": "FMCG & Retail",
-    "title": "Warehouse Quality Intern",
-    "company": "Dabur India",
-    "location": "Ghaziabad",
-    "education": "12th Pass",
+    "title": "Front Office",
+    "company": "Itc Limited",
+    "location": "Karnataka",
+    "sector": "General",
+    "education": "Graduate",
+    "description": "Front Office at Itc Limited under PM Internship Scheme. Location: Karnataka.",
     "skills": [
-      "quality control",
-      "packaging",
-      "inventory",
-      "documentation"
+      "communication"
     ],
-    "description": "Inspect incoming raw materials and outgoing finished goods at Dabur manufacturing plant.",
-    "apply_url": "https://pminternship.mca.gov.in/"
-  },
-  {
-    "id": 35,
-    "sector": "Power & Energy",
-    "title": "Wind Farm Maintenance Intern",
-    "company": "Adani Green Energy",
-    "location": "Kutch",
-    "education": "Diploma",
-    "skills": [
-      "hardware",
-      "wiring",
-      "safety protocols",
-      "mechanic"
-    ],
-    "description": "Assist with wind turbine blade inspection and generator maintenance at Adani's wind farm.",
     "apply_url": "https://pminternship.mca.gov.in/"
   }
 ]

@@ -6,12 +6,10 @@ import { Header } from './components/Header';
 import { AIChatMentor } from './components/AIChatMentor';
 import { InterviewSimulator } from './components/InterviewSimulator';
 import { LeetcodeHub } from './components/LeetcodeHub';
+import { VoiceWidget } from './components/VoiceWidget';
 import { LoginScreen } from './components/LoginScreen';
 import { auth, signOut, onAuthStateChanged } from './firebase';
-
 const API_BASE = "http://localhost:8000";
-
-// Core static dictionary for english fallbacks
 const defaultUIStrings = {
   onboardingTitle: "YOUR CAREER STARTS HERE",
   onboardingSub: "The PM Internship Scheme connects youth with India's top 500 companies. Choose your path below.",
@@ -24,7 +22,6 @@ const defaultUIStrings = {
   startOver: "START OVER", skillsVerified: "VERIFIED", topJobMatches: "YOUR TOP MATCHES", applyNow: "APPLY NOW", aiInterview: "PRACTICE INTERVIEW", getTips: "GET TIPS",
   quizTitle: "QUICK QUIZ", quizSub: "Answer 5 questions to verify your skills.", generatingJobs: "FINDING JOBS...", finishQuizMsg: "QUIZ COMPLETE!", nextQuestion: "NEXT", finishQuiz: "SEE MY INTERNSHIPS", noMatch: "No matches found. Try different skills."
 };
-
 const SECTOR_OPTIONS = [
   { id: "Any", label: "All Sectors", icon: Globe },
   { id: "IT & Technology", label: "IT & Tech", icon: Monitor },
@@ -39,26 +36,20 @@ const SECTOR_OPTIONS = [
   { id: "Construction & Infrastructure", label: "Construction", icon: Hammer },
   { id: "Telecommunications", label: "Telecom", icon: Phone },
 ];
-
 const LOCATION_OPTIONS = [
   "India (Any)", "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai",
   "Pune", "Kolkata", "Noida", "Ahmedabad", "Jaipur", "Remote"
 ];
-
 const LANG_OPTIONS = [
   { code: "English", label: "English", lang: "en" },
   { code: "Hindi", label: "हिंदी", lang: "hi" },
   { code: "Telugu", label: "తెలుగు", lang: "te" },
 ];
-
 function App() {
   const [screen, setScreen] = useState("onboarding");
   const [language, setLanguage] = useState("English");
-  
-  // Auth State
   const [user, setUser] = useState(null);
   const [checkingAuth, setCheckingAuth] = useState(true);
-
   React.useEffect(() => {
       const unsub = onAuthStateChanged(auth, (u) => {
           setUser(u);
@@ -66,39 +57,26 @@ function App() {
       });
       return () => unsub();
   }, []);
-
   const handleLogout = () => signOut(auth);
-
-  // Localization dictionary
   const [ui, setUi] = useState(defaultUIStrings);
   const [translating, setTranslating] = useState(false);
-
-  // User States
   const [skills, setSkills] = useState([]);
   const [profileDict, setProfileDict] = useState({ location: "India (Any)", education: "10th Pass", preferred_sector: "Any" });
   const [activeLang, setActiveLang] = useState("en");
   const [quizData, setQuizData] = useState([]);
+  const [quizSessionKey, setQuizSessionKey] = useState(0);
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
-  
-  // Job Tips State
-  const [tipsLoading, setTipsLoading] = useState(null); // stores Job ID currently loading tips
-  const [jobTips, setJobTips] = useState({}); // stores { jobId: ["tip1", "tip2"] }
-
-  // Interview Simulator State
+  const [tipsLoading, setTipsLoading] = useState(null);  
+  const [jobTips, setJobTips] = useState({});  
   const [interviewStarted, setInterviewStarted] = useState(false);
   const [interviewLoading, setInterviewLoading] = useState(false);
   const [interviewQuestions, setInterviewQuestions] = useState([]);
-
-  // Default target for Leetcode
   const targetCompany = jobs?.length > 0 ? jobs[0].company : "Tech";
-
   const navTo = (s) => {
     window.scrollTo(0,0);
     setScreen(s);
   };
-
-  // 1. Localization Layer
   const selectLanguage = async (langObj) => {
     setLanguage(langObj.code);
     setActiveLang(langObj.lang);
@@ -106,7 +84,6 @@ function App() {
       setUi(defaultUIStrings);
       return;
     }
-    
     setTranslating(true);
     try {
       const res = await axios.post(`${API_BASE}/translate`, {
@@ -119,8 +96,6 @@ function App() {
     }
     setTranslating(false);
   };
-
-  // 2. Profile Extraction
   const handleManualSubmit = async (selectedSkills) => {
     setLoading(true);
     try {
@@ -132,33 +107,33 @@ function App() {
       });
       setSkills(res.data.verified_skills || selectedSkills);
       setQuizData(res.data.assessment_quiz || []);
+      setQuizSessionKey(prev => prev + 1);
       setProfileDict(res.data.profile_dict);
       navTo("quiz");
     } catch (e) {
-      alert("Backend not reachable. Ensure FastAPI is running!");
+      alert(e?.response?.data?.detail || "Backend not reachable. Ensure FastAPI is running!");
     }
     setLoading(false);
   };
-
   const handleFileUpload = async (file) => {
     setLoading(true);
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("location", profileDict.location || "India (Any)");
+    formData.append("education", profileDict.education || "10th Pass");
+    formData.append("preferred_sector", profileDict.preferred_sector || "Any");
     try {
       const res = await axios.post(`${API_BASE}/analyze-resume`, formData);
       setSkills(res.data.extracted_skills || []);
       setQuizData(res.data.assessment_quiz || []);
-      // Maintain onboarding dict + extracted data
+      setQuizSessionKey(prev => prev + 1);
       setProfileDict(prev => ({ ...prev, ...res.data.profile_dict }));
       navTo("quiz");
     } catch (e) {
-      // Graceful fallback is now handled in backend, so if this triggers it's a real network issue
-      alert("Network error. Is the backend running?");
+      alert(e?.response?.data?.detail || "Network error. Is the backend running?");
     }
     setLoading(false);
   };
-
-  // 3. Post-Quiz Job Matching (TF-IDF)
   const fetchRecommendedJobs = async () => {
     setLoading(true);
     try {
@@ -178,8 +153,6 @@ function App() {
     }
     setLoading(false);
   };
-
-  // 4. Mentor Tips for specific job
   const fetchJobTips = async (job) => {
     setTipsLoading(job.id);
     try {
@@ -195,8 +168,6 @@ function App() {
     }
     setTipsLoading(null);
   };
-
-  // 5. Job Specific Interview Prep
   const startInterview = async (job) => {
     setInterviewLoading(true);
     try {
@@ -212,15 +183,12 @@ function App() {
     }
     setInterviewLoading(false);
   };
-
   const pageTransition = { 
       initial: { opacity: 0, x: 200, filter: "blur(10px)" }, 
       animate: { opacity: 1, x: 0, filter: "blur(0px)" }, 
       exit: { opacity: 0, x: -200, filter: "blur(10px)" }, 
       transition: { duration: 0.5, ease: "easeInOut" } 
   };
-
-  // --- Screens ---
   const OnboardingScreen = () => {
     const [loc, setLoc] = useState(profileDict.location);
     const [edu, setEdu] = useState(profileDict.education);
@@ -228,14 +196,13 @@ function App() {
     const handleContinue = (dest) => { setProfileDict({ location: loc, education: edu, preferred_sector: sec }); navTo(dest); };
     return (
       <motion.div {...pageTransition} className="w-full max-w-4xl mx-auto pt-6 pb-20">
-        {/* Hero */}
+        { }
         <div className="text-center mb-10">
           <p className="text-neon font-bold tracking-[0.3em] text-xs uppercase mb-4 flex items-center justify-center gap-3"><span className="w-8 h-px bg-neon inline-block"></span>PM INTERNSHIP SCHEME<span className="w-8 h-px bg-neon inline-block"></span></p>
           <h1 className="font-pixel text-2xl md:text-4xl leading-[1.5] text-white uppercase">{ui.onboardingTitle}</h1>
           <p className="text-white/50 text-sm md:text-base leading-relaxed font-sans max-w-lg mx-auto mt-4">{ui.onboardingSub}</p>
         </div>
-
-        {/* Sector Grid — Visual Icons */}
+        { }
         <div className="mb-10">
           <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] mb-4 flex items-center gap-2"><Layers size={12}/> {ui.sectorLabel}</h3>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
@@ -252,8 +219,7 @@ function App() {
             })}
           </div>
         </div>
-
-        {/* Location Grid */}
+        { }
         <div className="mb-10">
           <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] mb-4 flex items-center gap-2"><MapPin size={12}/> {ui.locationLabel}</h3>
           <div className="flex flex-wrap gap-2">
@@ -265,8 +231,7 @@ function App() {
             ))}
           </div>
         </div>
-
-        {/* Education Selector */}
+        { }
         <div className="mb-10">
           <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] mb-4 flex items-center gap-2"><BookOpen size={12}/> {ui.educationLabel}</h3>
           <div className="flex flex-wrap gap-3">
@@ -278,8 +243,7 @@ function App() {
             ))}
           </div>
         </div>
-
-        {/* Action Buttons */}
+        { }
         <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <motion.button whileTap={{ scale: 0.97 }} onClick={() => handleContinue("manual")} className="flex-1 bg-neon text-black font-bold font-sans tracking-widest uppercase px-6 py-5 text-sm border-2 border-neon hover:bg-transparent hover:text-neon transition-all btn-glow flex items-center justify-center gap-3">
               <Target size={20}/> {ui.noResume}
@@ -291,7 +255,6 @@ function App() {
       </motion.div>
     );
   }
-
   const ManualScreen = () => {
     const [selected, setSelected] = useState([]);
     const toggle = (skill) => selected.includes(skill) ? setSelected(selected.filter(s => s !== skill)) : setSelected([...selected, skill]);
@@ -336,7 +299,6 @@ function App() {
       </motion.div>
     );
   };
-
   const UploadScreen = () => {
     const fileRef = useRef(null);
     return (
@@ -356,7 +318,6 @@ function App() {
       </motion.div>
     )
   };
-
   const QuizScreen = () => {
     const [currentIdx, setCurrentIdx] = useState(0); const [selected, setSelected] = useState(null); const [score, setScore] = useState(0); const [finished, setFinished] = useState(false);
     if (loading) return (<motion.div {...pageTransition} className="max-w-xl mx-auto text-center py-20 flex flex-col items-center"><Loader2 size={64} className="animate-spin text-neon mb-10" /><h2 className="text-3xl font-pixel text-white">{ui.generatingJobs}</h2></motion.div>);
@@ -400,49 +361,38 @@ function App() {
       </motion.div>
     )
   }
-
   const ResultsScreen = () => (
     <motion.div {...pageTransition} className="w-full max-w-4xl mx-auto pb-20">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
           <button onClick={() => navTo("onboarding")} className="text-neon font-bold text-xs flex items-center gap-2 hover:text-white transition-colors uppercase tracking-widest border border-neon px-4 py-2 bg-black/40"><ChevronLeft size={16} /> {ui.startOver}</button>
           <div className="bg-green-500/10 text-green-400 px-4 py-2 text-[10px] font-bold tracking-widest uppercase border border-green-500/20 flex items-center gap-2"><ShieldCheck size={14} /> {ui.skillsVerified}</div>
       </div>
-
-      {/* Verified Skills Tags */}
+      { }
       <div className="mb-8 flex flex-wrap gap-2">
         {skills.map(s => (<span key={s} className="bg-white/5 text-white/70 px-4 py-2 border border-white/10 font-sans font-medium text-xs tracking-wider uppercase">{s}</span>))}
       </div>
-
       <h2 className="text-xl md:text-2xl font-pixel mb-8 text-white flex items-center gap-4 uppercase"><Star className="text-neon" size={24} /> {ui.topJobMatches}</h2>
-      
-      {/* Job Cards — Large, mobile-friendly */}
+      { }
       <div className="space-y-8">
         {jobs.length === 0 ? <div className="p-12 border border-white/10 text-center text-white/40 text-sm">{ui.noMatch}</div> : jobs.map((job, idx) => (
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.12 }} key={job.id}
             className="bg-black/50 backdrop-blur-xl border border-white/20 p-6 md:p-10 relative overflow-hidden hover:border-neon/40 transition-colors">
-            
-            {/* Match Badge */}
+            { }
             <div className="absolute top-0 right-0 bg-neon/10 text-neon tracking-[0.3em] font-black uppercase px-5 py-3 text-xs border-l border-b border-neon/30">MATCH {job.match_score}%</div>
-            
-            {/* Title */}
+            { }
             <h3 className="text-lg md:text-2xl font-pixel mt-2 uppercase text-white pr-28 leading-relaxed">{job.title}</h3>
-            
-            {/* Company & Location */}
+            { }
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-4">
               <p className="text-neon font-bold tracking-widest uppercase text-xs flex items-center gap-2"><Briefcase size={16} /> {job.company}</p>
               <p className="text-white/40 text-xs flex items-center gap-1 uppercase tracking-wider"><MapPin size={12}/> {job.location}</p>
             </div>
-            
-            {/* Description */}
+            { }
             <p className="text-sm text-white/60 mt-5 leading-relaxed font-light">{job.description}</p>
-            
-            {/* Skills Tags */}
+            { }
             {job.skills && <div className="flex flex-wrap gap-2 mt-5">{job.skills.map(sk => (<span key={sk} className="text-[10px] uppercase tracking-wider px-3 py-1.5 border border-white/10 text-white/40 bg-white/5 font-bold">{sk}</span>))}</div>}
-            
-            {/* Tips Panel */}
+            { }
             <AnimatePresence>{jobTips[job.id] && (<motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} className="mt-6 bg-neon/5 border border-neon/20 p-5"><h4 className="text-[10px] text-neon uppercase mb-3 tracking-widest font-bold"><Lightbulb size={12} className="inline mr-1"/> TIPS</h4><ul className="list-disc pl-5 space-y-2 text-white/70 text-xs">{jobTips[job.id].map((tip, i) => <li key={i}>{tip}</li>)}</ul></motion.div>)}</AnimatePresence>
-            
-            {/* Action Buttons — LARGE Apply */}
+            { }
             <div className="mt-8 flex flex-col gap-4">
               <a href={job.apply_url || "https://pminternship.mca.gov.in/"} target="_blank" rel="noopener noreferrer"
                 className="w-full text-center bg-neon text-black tracking-[0.15em] font-black uppercase py-5 md:py-6 text-base border-2 border-neon btn-glow transition-all hover:bg-transparent hover:text-neon flex items-center justify-center gap-3">
@@ -456,8 +406,7 @@ function App() {
           </motion.div>
         ))}
       </div>
-
-      {/* Training Path */}
+      { }
       {jobs.length > 0 && (
         <div className="mt-12 bg-black/40 backdrop-blur-xl border border-white/20 p-8">
           <h3 className="font-pixel text-[10px] text-white/50 tracking-[0.3em] uppercase mb-6">TRAINING PATH</h3>
@@ -466,18 +415,15 @@ function App() {
       )}
     </motion.div>
   );
-
   if (checkingAuth) return <div className="min-h-screen bg-black flex items-center justify-center"><Loader2 className="animate-spin text-neon w-12 h-12" /></div>;
   if (!user) return <LoginScreen />;
-
   return (
     <div className="min-h-screen flex flex-col relative w-full overflow-hidden bg-black selection:bg-neon selection:text-black">
       <video autoPlay loop muted playsInline className="fixed top-0 left-0 w-full h-full object-cover z-0 opacity-60 pointer-events-none"><source src="https://raw.githubusercontent.com/SkTheAdvanceGamer/Video/main/Futuristic_Data_Node_Animation.mp4" type="video/mp4"/></video>
       <div className="fixed top-0 left-0 w-full h-full bg-black/30 z-0 pointer-events-none"></div>
-
       <div className="relative z-10 w-full min-h-screen flex flex-col overflow-y-auto overflow-x-hidden h-screen">
           <Header language={language} selectLanguage={selectLanguage} user={user} onLogout={handleLogout} />
-          {/* Language Toggle Bar */}
+          { }
           <div className="w-full flex justify-center py-3 bg-black/30 backdrop-blur-sm border-b border-white/5">
             <div className="flex items-center gap-1 bg-black/50 border border-white/10 p-1">
               {LANG_OPTIONS.map(lo => (
@@ -494,15 +440,16 @@ function App() {
               {screen === "onboarding" && <OnboardingScreen key="onboarding" />}
               {screen === "manual" && <ManualScreen key="manual" />}
               {screen === "upload" && <UploadScreen key="upload" />}
-              {screen === "quiz" && <QuizScreen key="quiz" />}
+              {screen === "quiz" && <QuizScreen key={`quiz-${quizSessionKey}`} />}
               {screen === "results" && <ResultsScreen key="results" />}
             </AnimatePresence>
           </main>
       </div>
-      {screen === "results" && <div className="fixed bottom-0 right-0 z-50"><AIChatMentor skills={skills} language={language} /></div>}
+      {(screen === "quiz" || screen === "results") && <div className="fixed bottom-0 right-0 z-50"><AIChatMentor skills={skills} language={language} /></div>}
       {interviewStarted && <InterviewSimulator questions={interviewQuestions} onClose={() => setInterviewStarted(false)} />}
+      {/* OmniDimension Voice AI — visible on all screens */}
+      <VoiceWidget />
     </div>
   );
 }
-
 export default App;

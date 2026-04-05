@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BrainCircuit, CheckCircle, XCircle, ChevronRight, Award } from 'lucide-react';
-
 export const InterviewSimulator = ({ questions, onClose }) => {
     const [currentIdx, setCurrentIdx] = useState(0);
     const [selected, setSelected] = useState(null);
     const [score, setScore] = useState(0);
     const [finished, setFinished] = useState(false);
-
     if (!questions || questions.length === 0) return null;
-
     const currentQ = questions[currentIdx];
-
     const handleSelect = (opt) => {
         if (selected) return;
         setSelected(opt);
@@ -19,7 +15,6 @@ export const InterviewSimulator = ({ questions, onClose }) => {
             setScore(s => s + 1);
         }
     };
-
     const nextQ = () => {
         if (currentIdx + 1 < questions.length) {
             setCurrentIdx(c => c + 1);
@@ -28,7 +23,6 @@ export const InterviewSimulator = ({ questions, onClose }) => {
             setFinished(true);
         }
     };
-
     return (
         <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
@@ -36,7 +30,7 @@ export const InterviewSimulator = ({ questions, onClose }) => {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm"
         >
             <div className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative">
-                {/* Header */}
+                { }
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 flex justify-between items-center relative overflow-hidden">
                     <div className="absolute -right-10 -top-10 text-white/10">
                         <BrainCircuit size={120} />
@@ -54,8 +48,7 @@ export const InterviewSimulator = ({ questions, onClose }) => {
                         </button>
                     )}
                 </div>
-
-                {/* Progress Bar */}
+                { }
                 <div className="h-1.5 bg-gray-100 w-full relative">
                     <motion.div 
                         initial={{ width: 0 }}
@@ -63,7 +56,6 @@ export const InterviewSimulator = ({ questions, onClose }) => {
                         className="absolute top-0 left-0 h-full bg-blue-500"
                     />
                 </div>
-
                 <div className="p-6">
                     {finished ? (
                         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center py-8">
@@ -92,12 +84,10 @@ export const InterviewSimulator = ({ questions, onClose }) => {
                                 <p className="text-lg font-bold text-gray-800 mb-6 leading-relaxed">
                                     {currentQ.q}
                                 </p>
-                                
                                 <div className="space-y-3">
                                     {currentQ.options.map((opt, i) => {
                                         let stateClass = "border-gray-200 bg-white hover:border-blue-400 hover:bg-blue-50";
                                         let icon = null;
-                                        
                                         if (selected) {
                                             if (opt === currentQ.a) {
                                                 stateClass = "border-green-500 bg-green-50 text-green-800 font-bold";
@@ -109,7 +99,6 @@ export const InterviewSimulator = ({ questions, onClose }) => {
                                                 stateClass = "border-gray-200 bg-gray-50 opacity-50";
                                             }
                                         }
-
                                         return (
                                             <button 
                                                 key={i}
@@ -123,7 +112,6 @@ export const InterviewSimulator = ({ questions, onClose }) => {
                                         );
                                     })}
                                 </div>
-
                                 {selected && (
                                     <motion.button 
                                         initial={{ opacity: 0, y: 10 }}

@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Target, Users, BookOpen, AlertCircle } from 'lucide-react';
 import axios from 'axios';
-
 const API_BASE = "http://localhost:8000";
-
 export const LeetcodeHub = ({ company, skills }) => {
     const [recommendations, setRecommendations] = useState([]);
     const [loading, setLoading] = useState(false);
     const [fetched, setFetched] = useState(false);
-
     const fetchProblems = async () => {
         setLoading(true);
         try {
@@ -21,14 +18,12 @@ export const LeetcodeHub = ({ company, skills }) => {
         }
         setLoading(false);
     };
-
     const getDiffColor = (diff) => {
         const d = diff.toLowerCase();
         if (d.includes('easy')) return 'text-emerald-600 bg-emerald-50 border-emerald-200';
         if (d.includes('medium')) return 'text-amber-600 bg-amber-50 border-amber-200';
         return 'text-rose-600 bg-rose-50 border-rose-200';
     };
-
     if (!fetched && !loading) {
         return (
             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 text-center relative overflow-hidden group">
@@ -49,7 +44,6 @@ export const LeetcodeHub = ({ company, skills }) => {
             </div>
         );
     }
-
     return (
         <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="bg-gradient-to-r from-gray-900 to-gray-800 p-6 flex justify-between items-center text-white">
@@ -64,7 +58,6 @@ export const LeetcodeHub = ({ company, skills }) => {
                 </div>
                 {loading && <span className="animate-pulse text-sm font-bold text-orange-400">Loading...</span>}
             </div>
-
             <div className="p-2">
                 {recommendations.length > 0 ? (
                     <div className="divide-y divide-gray-50">
