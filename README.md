@@ -335,6 +335,9 @@ This flow demonstrates product completeness from input to decision output.
 - Web and mobile experience both available.
 
 ---
+## Tech Stacks
+-Backend:Fastapi,Google Firebase
+-Frontend:React js
 
 ## Roadmap
 - Persistent data layer for interview sessions and longitudinal analytics
